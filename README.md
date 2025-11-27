@@ -144,6 +144,7 @@
   ├── tests/
   └── docs/
   ```
+  ![Distribución de carpetas](assets/estruct.png)
 
 #### 2.2 Manual de uso y casos de prueba
 
