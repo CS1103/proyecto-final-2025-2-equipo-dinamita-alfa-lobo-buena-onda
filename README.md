@@ -66,9 +66,9 @@
 
 * 1. Historia y evolución de las NNs.
      
-    * La historia de las redes neuronales artificiales (NNs) comenzó en 1943, cuando Warren McCulloch y Walter Pitts desarrollaron la neurona de McCulloch-Pitts, el primer modelo teórico que sentó las bases para entender y modelar el funcionamiento neuronal mediante circuitos eléctricos. Quince años después, en 1958, Frank Rosenblatt creó el Perceptrón, marcando el inicio del interés práctico al ser el primer modelo de red neuronal entrenable, aunque limitado a la resolución de problemas linealmente separables.
+    * La historia de las redes neuronales artificiales (NNs) comenzó en 1943, cuando Warren McCulloch y Walter Pitts desarrollaron la neurona de McCulloch-Pitts, el primer modelo teórico que sentó las bases para entender y modelar el funcionamiento neuronal mediante circuitos eléctricos. Quince años después, en 1958, Frank Rosenblatt creó el Perceptrón, marcando el inicio del interés práctico al ser el primer modelo de red neuronal entrenable, aunque limitado a la resolución de problemas linealmente separables. 
 
-    * La primera gran pausa se superó en la década de 1980 con la reintroducción del algoritmo de Retropropagación (Backpropagation). Este avance fue crucial, ya que permitió entrenar eficientemente redes neuronales con múltiples capas, superando las limitaciones del Perceptrón. El desarrollo se aceleró significativamente. En 1989, Yann LeCun propuso las Redes Neuronales Convolucionales (CNN), inspiradas en el córtex visual y optimizadas para el reconocimiento de imágenes.
+    * La primera gran pausa se superó en la década de 1980 con la reintroducción del algoritmo de Retropropagación (Backpropagation). Este avance fue crucial, ya que permitió entrenar eficientemente redes neuronales con múltiples capas, superando las limitaciones del Perceptrón. El desarrollo se aceleró significativamente. En 1989, Yann LeCun propuso las Redes Neuronales Convolucionales (CNN), inspiradas en el córtex visual y optimizadas para el reconocimiento de imágenes. 
  
     * El verdadero salto al Deep Learning ocurrió en 2006 con la creación de las Deep Belief Networks (DBN), que hicieron viable el entrenamiento de redes profundas con muchas capas (decenas o cientos). Posteriormente, en 2014, surgieron las Generative Adversarial Networks (GAN), que revolucionaron la capacidad de las redes para generar contenido nuevo y fotorrealista. Estos hitos han transformado las NNs en herramientas esenciales para múltiples aplicaciones de inteligencia artificial moderna.
 
@@ -221,6 +221,13 @@
 - BM, "¿Qué es la retropropagación?", IBM Think, [En línea]. Disponible en: https://www.ibm.com/mx-es/think/topics/backpropagation. [Accedido: 24-11-2025].
 
 - Sánchez Medina, J. J. (1998). Linealización del algoritmo de backpropagation para el entrenamiento de redes neuronales (Proyecto fin de carrera). Universidad de Las Palmas de Gran Canaria. https://accedacris.ulpgc.es/bitstream/10553/1983/1/1235.pdf
+
+- W. S. McCulloch y W. Pitts, "A Logical Calculus of the Ideas Immanent in Nervous Activity". Disponible en: https://en.wikipedia.org/wiki/A_Logical_Calculus_of_the_Ideas_Immanent_in_Nervous_Activity, 2024.
+
+- Angelvillazon.com, "Historia de las redes neuronales en la Inteligencia Artificial," 2025. [Online]. Available: https://www.angelvillazon.com/inteligencia-artificial-robotica/historia-de-las-redes-neuronales-en-la-inteligencia-artificial/
+
+- Lamaquinaoraculo.com, "Neuronas de McCulloch y Pitts - Artículo de LMO," 2025. [Online]. Available: https://lamaquinaoraculo.com/deep-learning/el-modelo-neuronal-de-mcculloch-y-pitts/
+  
 ---
 
 ### Licencia
