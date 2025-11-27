@@ -64,34 +64,68 @@
 * **Contenido de ejemplo**:
 
 
-#1. Historia y evolución de las NNs.
+* 1. Historia y evolución de las NNs.
      
-- La historia de las redes neuronales artificiales comienza en 1943, cuando Warren McCulloch y Walter Pitts desarrollaron la primera neurona artificial, conocida como la neurona de McCulloch-Pitts. Su trabajo sentó las bases teóricas para entender cómo las neuronas podrían funcionar y ser modeladas con circuitos eléctricos. Posteriormente, en 1958, Frank Rosenblatt creó el perceptrón, el primer modelo de red neuronal entrenable, lo que marcó el inicio del interés práctico en este campo.
- 
- - Durante los años 80, se introdujo el algoritmo de retropropagación (backpropagation), que permitió entrenar redes neuronales con múltiples capas, acelerando significativamente el desarrollo de la inteligencia artificial. En 1989, Yann LeCun desarrolló las redes neuronales convolucionales (CNN), inspiradas en el córtex visual y utilizadas especialmente en reconocimiento de imágenes.
- 
- - El verdadero avance hacia el deep learning se dio en 2006 con la creación de las Deep Belief Networks (DBN), que lograron entrenar redes profundas con muchas capas. Más adelante, en 2014, surgieron las Generative Adversarial Networks (GAN), revolucionando la capacidad de las redes neuronales para generar contenido nuevo y realista. Estos hitos han llevado a las redes neuronales a convertirse en herramientas esenciales en múltiples aplicaciones actuales de inteligencia artificial.
+    * La historia de las redes neuronales artificiales (NNs) comenzó en 1943, cuando Warren McCulloch y Walter Pitts desarrollaron la neurona de McCulloch-Pitts, el primer modelo teórico que sentó las bases para entender y modelar el funcionamiento neuronal mediante circuitos eléctricos. Quince años después, en 1958, Frank Rosenblatt creó el Perceptrón, marcando el inicio del interés práctico al ser el primer modelo de red neuronal entrenable, aunque limitado a la resolución de problemas linealmente separables.
 
+    * La primera gran pausa se superó en la década de 1980 con la reintroducción del algoritmo de Retropropagación (Backpropagation). Este avance fue crucial, ya que permitió entrenar eficientemente redes neuronales con múltiples capas, superando las limitaciones del Perceptrón. El desarrollo se aceleró significativamente. En 1989, Yann LeCun propuso las Redes Neuronales Convolucionales (CNN), inspiradas en el córtex visual y optimizadas para el reconocimiento de imágenes.
+ 
+    * El verdadero salto al Deep Learning ocurrió en 2006 con la creación de las Deep Belief Networks (DBN), que hicieron viable el entrenamiento de redes profundas con muchas capas (decenas o cientos). Posteriormente, en 2014, surgieron las Generative Adversarial Networks (GAN), que revolucionaron la capacidad de las redes para generar contenido nuevo y fotorrealista. Estos hitos han transformado las NNs en herramientas esenciales para múltiples aplicaciones de inteligencia artificial moderna.
 
-  #2. Principales arquitecturas: MLP, CNN, RNN.
+* 2. Principales arquitecturas: MLP, CNN, RNN.
      
- - Las principales arquitecturas de redes neuronales han evolucionado significativamente desde sus inicios en los años 50. El Perceptrón, desarrollado por Frank Rosenblatt en 1958, fue la primera arquitectura y consistía en una sola capa de neuronas que realizaba clasificaciones binarias simples. Aunque fue un gran avance, su limitación radicaba en no poder resolver problemas no lineales.
+    * Las arquitecturas fundamentales de las redes neuronales están diseñadas para manejar tipos de datos y problemas específicos, cada una con una estructura única:
 
- - En 1965 surgió el Multilayer Perceptron (MLP), que amplió el perceptrón a múltiples capas: una de entrada, capas ocultas y una de salida. Esta arquitectura permitió modelar problemas más complejos, aunque el entrenamiento era inicialmente muy difícil porque los pesos debían asignarse manualmente. Con la introducción en los años 80 del algoritmo de retropropagación (backpropagation), el aprendizaje en redes profundas se hizo viable, habilitando el desarrollo de modelos más sofisticados.
+    * a) Perceptrón Multicapa (MLP)
+ 
+        * El MLP es la arquitectura fundamental de las redes neuronales feedforward (de alimentación hacia adelante). Se compone de una capa de entrada, una o más capas ocultas y una capa de salida.
+         
+         * Función: Permite modelar relaciones complejas y resolver problemas no lineales al aplicar funciones de activación en las capas ocultas.
+         
+         * Uso: Clasificación y regresión en datos tabulares y en tareas donde las características de entrada son fijas.
 
- - En 1989, Yann LeCun propuso las Redes Neuronales Convolucionales (CNN), inspiradas en el córtex visual de los animales. Las CNN son especialmente efectivas en tareas como el reconocimiento de imágenes, usando capas convolucionales para extraer características importantes y capas de pooling para reducir dimensión sin perder información relevante. Por otra parte, las Redes Neuronales Recurrentes (RNN) y su avance, las Long Short-Term Memory (LSTM) en 1997, están diseñadas para trabajar con datos secuenciales y temporales, siendo útiles en procesamiento de lenguaje y series temporales.
+    * b) Redes Neuronales Convolucionales (CNN)
 
- - Finalmente, la llegada del deep learning en 2006 introdujo las Deep Belief Networks (DBN), que pudieron entrenar redes con muchas capas, y en 2014 las Generative Adversarial Networks (GAN) revolucionaron la generación de contenido. Estas arquitecturas nuevas han ampliado enormemente las capacidades de las redes neuronales en inteligencia artificial.
+        * Las CNN son la arquitectura estándar para el procesamiento de datos con una estructura de cuadrícula, como las imágenes.
+ 
+        * Composición: Utilizan capas convolucionales que aplican filtros para extraer características importantes (bordes, texturas) de la entrada, y capas de pooling para reducir la dimensionalidad de los datos sin perder información crítica.
+ 
+        * Uso: Reconocimiento de imágenes, visión por computadora, detección de objetos y análisis de vídeo.
+ 
+    * c) Redes Neuronales Recurrentes (RNN)
+ 
+        * Las RNN están diseñadas específicamente para manejar datos secuenciales y temporales, donde la salida en un momento $t$ depende de las entradas y los estados de momentos $t-1$.
 
- - Estos hitos configuran las principales arquitecturas fundamentales que han impulsado el desarrollo y aplicaciones actuales de las redes neuronales artificiales.
+        * Composición: Introducen un bucle de retroalimentación que permite que la información persista entre pasos de tiempo, dándoles una "memoria".
+ 
+        * Limitación y Avance: Las RNN básicas sufren del problema del gradiente desvaneciente al manejar secuencias largas. Esto se resolvió con la creación de las Long Short-Term Memory (LSTM), que introducen celdas de memoria y compuertas (input, forget, output) para regular el flujo de información.
+ 
+        * Uso: Procesamiento de Lenguaje Natural (PLN), series temporales, traducción automática y reconocimiento de voz.
 
- #3. Algoritmos de entrenamiento: backpropagation, optimizadores.
+* 3. Algoritmos de entrenamiento: backpropagation, optimizadores.
 
-- El algoritmo de retropropagación (backpropagation) es fundamental para el entrenamiento de redes neuronales artificiales. Su función principal es ajustar los pesos sinápticos para minimizar la función de pérdida, lo que mejora la capacidad de la red para generalizar a nuevos datos. Este ajuste se realiza propagando el error desde la capa de salida hacia las capas anteriores, permitiendo que cada neurona contribuya a corregir el modelo. Durante el entrenamiento, el algoritmo calcula la tasa a la que cada neurona afecta la pérdida general usando la regla de la cadena del cálculo diferencial, lo cual permite optimizar eficientemente todos los parámetros mediante métodos como el descenso del gradiente.
+    * a) Retropropagación (Backpropagation)
+ 
+        * La retropropagación es el algoritmo central que permite el aprendizaje en redes neuronales. Su objetivo es ajustar los pesos sinápticos de la red para minimizar la función de pérdida (o costo), mejorando la precisión del modelo.
+ 
+        * El proceso opera en dos fases iterativas:
+        
+        * Propagación hacia Adelante (Forward Pass): La entrada se propaga desde la primera capa hasta la capa de salida para calcular la predicción de la red. La función de pérdida cuantifica la discrepancia entre la salida predicha y la salida deseada (valor real).
+        
+        * Propagación hacia Atrás (Backward Pass): El error calculado se propaga desde la capa de salida hacia atrás. Usando la regla de la cadena del cálculo diferencial, el algoritmo calcula el gradiente (la tasa a la que cada peso y sesgo afecta la pérdida general).
+        
+        * Este gradiente es crucial, ya que indica la dirección en la que deben ajustarse los pesos y sesgos para reducir el error de la red.
 
-- La retropropagación se basa en dos fases principales: la propagación hacia adelante, donde se calcula la salida de la red para una entrada dada, y la propagación hacia atrás, que ajusta los pesos y sesgos para minimizar el error medido por una función de pérdida. Esta función cuantifica la discrepancia entre la salida predicha y la salida deseada. El proceso es iterativo y continúa hasta que la red alcanza un nivel aceptable de precisión. Además, la tasa de aprendizaje, que determina el tamaño de los pasos para actualizar los pesos, es un hiperparámetro clave que influye en la eficacia y velocidad del entrenamiento.
+    * b) Optimizadores
+ 
+        * Los optimizadores son algoritmos que utilizan la información del gradiente, calculada por la retropropagación, para realizar la actualización efectiva de los pesos de la red a lo largo del tiempo. Su meta es encontrar el conjunto óptimo de pesos que minimice la función de pérdida.
+        
+        * Descenso del Gradiente (Gradient Descent): Es la base de todos los optimizadores. Mueve los pesos en la dirección opuesta al gradiente (la pendiente más pronunciada hacia el "valle" de la pérdida). La Tasa de Aprendizaje es un hiperparámetro clave que determina el tamaño de los pasos dados en esta dirección.
+        
+        * Optimizadores Comunes: El Descenso de Gradiente Estocástico (SGD), Adam y RMSProp son variantes avanzadas que ajustan dinámicamente la tasa de aprendizaje o incorporan momentos anteriores para acelerar la convergencia y evitar problemas como la convergencia lenta o caer en mínimos locales.
+ 
+    * En conjunto, la retropropagación proporciona el gradiente del error, y los optimizadores lo utilizan para guiar el proceso de aprendizaje supervisado, permitiendo el entrenamiento de complejas arquitecturas de deep learning.
 
-- Los optimizadores, como el descenso de gradiente estocástico (SGD), Adam o RMSProp, son algoritmos que utilizan la información del gradiente calculado para actualizar los pesos con el objetivo de reducir la función de pérdida. Optimizar estos parámetros es crucial para evitar problemas comunes como convergencia lenta o caer en mínimos locales. En conjunto, la retropropagación y los optimizadores forman la base del aprendizaje supervisado en redes neuronales, permitiendo entrenar desde perceptrones multicapa básicos hasta complejas redes profundas que son hoy la base de la inteligencia artificial moderna.
 ---
 
 ### 2. Diseño e implementación
