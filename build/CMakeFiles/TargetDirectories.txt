@@ -1,0 +1,9 @@
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/pattern_classifier_app.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/sequence_predictor_app.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/controller_demo_app.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/test_tensor.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/test_neural_network.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/test_applications.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/test.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/edit_cache.dir
+/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/rebuild_cache.dir

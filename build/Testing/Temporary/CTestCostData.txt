@@ -1,0 +1,4 @@
+TestTensor 1 0.472414
+TestNeuralNetwork 1 0.192754
+TestApplications 1 0.42094
+---

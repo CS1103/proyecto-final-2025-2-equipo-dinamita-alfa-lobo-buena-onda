@@ -1,0 +1,70 @@
+Start testing: Nov 29 02:11 -05
+----------------------------------------------------------
+1/3 Testing: TestTensor
+1/3 Test: TestTensor
+Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_tensor"
+Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
+"TestTensor" start time: Nov 29 02:11 -05
+Output:
+----------------------------------------------------------
+==========================================================
+             TESTS DE LA BIBLIOTECA TENSOR (EPIC 1)       
+==========================================================
+-> Ejecutando prueba: Inicialización, Acceso y Reshape...		[PASSED] ✅
+-> Ejecutando prueba: Operaciones Element-wise y Escalares...		[PASSED] ✅
+-> Ejecutando prueba: Funcionalidad de Broadcasting...		[PASSED] ✅
+-> Ejecutando prueba: Operaciones Matriciales (MatMul/Transpose)...		[PASSED] ✅
+==========================================================
+<end of output>
+Test time =   0.47 sec
+----------------------------------------------------------
+Test Passed.
+"TestTensor" end time: Nov 29 02:11 -05
+"TestTensor" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: TestNeuralNetwork
+2/3 Test: TestNeuralNetwork
+Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_neural_network"
+Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
+"TestNeuralNetwork" start time: Nov 29 02:11 -05
+Output:
+----------------------------------------------------------
+==========================================================
+           TESTS DE LA BIBLIOTECA NEURAL NETWORK          
+==========================================================
+-> Ejecutando prueba: Dimensiones Capa Dense (Forward/Backward)...		[PASSED] ✅
+-> Ejecutando prueba: Funcionalidad Activaciones (ReLU/Sigmoid)...		[PASSED] ✅
+-> Ejecutando prueba: Sanity Check de Entrenamiento (Pérdida)...		[PASSED] ✅
+==========================================================
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"TestNeuralNetwork" end time: Nov 29 02:11 -05
+"TestNeuralNetwork" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: TestApplications
+3/3 Test: TestApplications
+Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_applications"
+Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
+"TestApplications" start time: Nov 29 02:11 -05
+Output:
+----------------------------------------------------------
+==========================================================
+             EJECUCIÓN DE TEST AUTOMATIZADOS (EPIC 3)     
+==========================================================
+-> Ejecutando prueba: Portabilidad (Clasificador)...		[PASSED] ✅
+-> Ejecutando prueba: Funcionalidad (Predictor)...		[PASSED] ✅
+-> Ejecutando prueba: Simulación (ControllerDemo)...		[PASSED] ✅
+==========================================================
+<end of output>
+Test time =   0.42 sec
+----------------------------------------------------------
+Test Passed.
+"TestApplications" end time: Nov 29 02:11 -05
+"TestApplications" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 29 02:11 -05

@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o -o sequence_predictor_app
