@@ -1,25 +1,29 @@
-Start testing: Nov 29 02:11 -05
+Start testing: Nov 29 16:40 -05
 ----------------------------------------------------------
 1/3 Testing: TestTensor
 1/3 Test: TestTensor
 Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_tensor"
 Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
-"TestTensor" start time: Nov 29 02:11 -05
+"TestTensor" start time: Nov 29 16:40 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
-             TESTS DE LA BIBLIOTECA TENSOR (EPIC 1)       
+      TESTS DE LA BIBLIOTECA TENSOR (EPIC 1) - COMPLETO  
 ==========================================================
 -> Ejecutando prueba: Inicialización, Acceso y Reshape...		[PASSED] ✅
 -> Ejecutando prueba: Operaciones Element-wise y Escalares...		[PASSED] ✅
 -> Ejecutando prueba: Funcionalidad de Broadcasting...		[PASSED] ✅
 -> Ejecutando prueba: Operaciones Matriciales (MatMul/Transpose)...		[PASSED] ✅
+-> Ejecutando prueba: Casos Límite y Edge Cases...		[PASSED] ✅
+-> Ejecutando prueba: Operaciones en Contexto de NN (Épic 1+2)...		[PASSED] ✅
+==========================================================
+   ✅ COBERTURA COMPLETA: ~95% de funcionalidad probada  
 ==========================================================
 <end of output>
-Test time =   0.47 sec
+Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"TestTensor" end time: Nov 29 02:11 -05
+"TestTensor" end time: Nov 29 16:40 -05
 "TestTensor" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -27,21 +31,28 @@ Test Passed.
 2/3 Test: TestNeuralNetwork
 Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_neural_network"
 Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
-"TestNeuralNetwork" start time: Nov 29 02:11 -05
+"TestNeuralNetwork" start time: Nov 29 16:40 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
-           TESTS DE LA BIBLIOTECA NEURAL NETWORK          
+     TESTS DE LA BIBLIOTECA NEURAL NETWORK (EPIC 2)      
 ==========================================================
 -> Ejecutando prueba: Dimensiones Capa Dense (Forward/Backward)...		[PASSED] ✅
 -> Ejecutando prueba: Funcionalidad Activaciones (ReLU/Sigmoid)...		[PASSED] ✅
--> Ejecutando prueba: Sanity Check de Entrenamiento (Pérdida)...		[PASSED] ✅
+-> Ejecutando prueba: Funciones de Pérdida (MSE/BCE)...		[PASSED] ✅
+-> Ejecutando prueba: Optimizadores (SGD/Adam)...		[PASSED] ✅
+-> Ejecutando prueba: Sanity Check de Entrenamiento (Pérdida)... (Loss: 9.39055 -> 0.182321)		[PASSED] ✅
+-> Ejecutando prueba: Convergencia en XOR (Problema No Lineal)... (Accuracy: 3/4)		[PASSED] ✅
+-> Ejecutando prueba: Serialización de Red Neuronal...		[PASSED] ✅
+-> Ejecutando prueba: Forward/Backward Manual en Red Completa...		[PASSED] ✅
+==========================================================
+   ✅ ÉPIC 2 COMPLETAMENTE CUBIERTO - 8 Tests Pasados   
 ==========================================================
 <end of output>
-Test time =   0.19 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"TestNeuralNetwork" end time: Nov 29 02:11 -05
+"TestNeuralNetwork" end time: Nov 29 16:40 -05
 "TestNeuralNetwork" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -49,22 +60,31 @@ Test Passed.
 3/3 Test: TestApplications
 Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_applications"
 Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
-"TestApplications" start time: Nov 29 02:11 -05
+"TestApplications" start time: Nov 29 16:40 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
-             EJECUCIÓN DE TEST AUTOMATIZADOS (EPIC 3)     
+  TESTS DE APLICACIONES Y PORTABILIDAD (EPIC 3) - COMPLETO
 ==========================================================
--> Ejecutando prueba: Portabilidad (Clasificador)...		[PASSED] ✅
--> Ejecutando prueba: Funcionalidad (Predictor)...		[PASSED] ✅
--> Ejecutando prueba: Simulación (ControllerDemo)...		[PASSED] ✅
+-> Ejecutando prueba: Portabilidad/Serialización (Clasificador)...		[PASSED] ✅
+-> Ejecutando prueba: Robustez ante Ruido (Clasificador)... (Robustez: 4/4)		[PASSED] ✅
+-> Ejecutando prueba: Generalización (Predictor)... (Pred: 13, Expected: 13)		[PASSED] ✅
+-> Ejecutando prueba: Interpolación (Predictor)...		[PASSED] ✅
+-> Ejecutando prueba: Simulación y Control (Demo)... (2 steps)		[PASSED] ✅
+-> Ejecutando prueba: Condiciones Límite (Demo)...EnvGym: ¡Límite alcanzado! Simulación terminada.
+ (Terminated after 7 steps)		[PASSED] ✅
+-> Ejecutando prueba: Pipeline Experimental Completo...		[PASSED] ✅
+-> Ejecutando prueba: Integración de Múltiples Apps...		[PASSED] ✅
+==========================================================
+   ✅ ÉPIC 3 COMPLETAMENTE CUBIERTO - 8 Tests Pasados   
+   📦 Portabilidad ✓ | 🎯 Generalización ✓ | 🎮 Control ✓
 ==========================================================
 <end of output>
-Test time =   0.42 sec
+Test time =   0.14 sec
 ----------------------------------------------------------
 Test Passed.
-"TestApplications" end time: Nov 29 02:11 -05
+"TestApplications" end time: Nov 29 16:40 -05
 "TestApplications" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 29 02:11 -05
+End testing: Nov 29 16:40 -05

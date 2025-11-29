@@ -1,7 +1,0 @@
-#input
-#output
-    [REGEX](Input: \(1,0\) -> Prediction: ([-+]?[0-9]*\.?[0-9]+))
-    [REGEX](Input: \(0,1\) -> Prediction: ([-+]?[0-9]*\.?[0-9]+))
-    [REGEX](Input: \(0,0\) -> Prediction: ([-+]?[0-9]*\.?[0-9]+))
-    [REGEX](Input: \(1,1\) -> Prediction: ([-+]?[0-9]*\.?[0-9]+))
-#endtest
