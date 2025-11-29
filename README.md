@@ -132,19 +132,42 @@
 
 #### 2.1 Arquitectura de la solución
 
-* **Patrones de diseño**: ejemplo: Factory para capas, Strategy para optimizadores.
-* **Estructura de carpetas (ejemplo)**:
+* **Estructura de carpetas**:
 
   ```
-  proyecto-final/
+  pong_ai/
+  ├── include/
+  |   └── utec/
+  |       ├── algebra/
+  |       |   └── tensor.h
+  |       ├── apps/
+  |       |   ├── ControllerDemo.h
+  |       |   ├── PatternClassifier.h
+  |       |   └── SequencePredictor.h
+  |       └── nn/
+  |           ├── neural_network.h
+  |           ├── nn_activarion.h
+  |           ├── nn_dense.h
+  |           ├── nn_interfaces.h
+  |           ├── nn_loss.h
+  |           └── nn_optimizer.h
   ├── src/
-  │   ├── layers/
-  │   ├── optimizers/
-  │   └── main.cpp
+  │   └── utec/
+  |       └── apps/
+  |           ├── ControllerDemo.cpp
+  |           ├── PatternClassifier.cpp
+  |           └── SequencePredictor.cpp   
+  │      
   ├── tests/
-  └── docs/
+  |   ├── test_applications.cpp
+  |   ├── test_neural_network.cpp
+  |   └── test_tensor.cpp
+  | 
+  ├── docs/
+  |   └── demo.mp4
+  └── CMakeLists.txt
   ```
-  ![Distribución de carpetas](assets/estruct.png)
+
 
 #### 2.2 Manual de uso y casos de prueba
 
