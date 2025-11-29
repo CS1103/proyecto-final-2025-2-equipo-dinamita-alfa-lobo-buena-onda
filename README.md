@@ -25,13 +25,13 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 ## Datos generales
 
 * **Tema**: Redes Neuronales en AI
-* **Grupo**: `Equipo dinamita alfa lobo buena onda` *(Reemplazar con tu número)*
+* **Grupo**: `Equipo dinamita alfa lobo buena onda`
 * **Integrantes**:
   * Fredy Alexander Cardenas Aliaga - 202420013 (Epic 1: Biblioteca de Álgebra)
   * Fredy Alexander Cardenas Aliaga - 202420013 (Epic 2: Red Neuronal)
   * Fredy Alexander Cardenas Aliaga - 202420013 (Epic 3: Aplicaciones)
   * Fredy Alexander Cardenas Aliaga - 202420013 (Testing y documentación)
-  * Fredy Alexander Cardenas Aliaga - 202420013 (Integración y presentación) *(si son 5)*
+  * Fredy Alexander Cardenas Aliaga - 202420013 (Integración y presentación) 
 
 ---
 
@@ -464,14 +464,3 @@ Ver archivo [BIBLIOGRAFIA.md](BIBLIOGRAFIA.md) con 6+ referencias en formato IEE
 
 ---
 
-## Licencia
-
-Este proyecto usa la licencia **MIT**. Ver [LICENSE](LICENSE) para detalles.
-
----
-
-## Contacto
-
-Para dudas o contribuciones: [tu-email@ejemplo.com]
-
-**GitHub**: [https://github.com/TU_USUARIO/TU_REPO]
