@@ -407,12 +407,12 @@ cd build && rm -rf * && cmake .. && make -j4 && ctest --verbose && ./pattern_cla
 
 | Tarea | Miembro | Rol | Horas |
 |-------|---------|-----|-------|
-| Epic 1: Tensor | Alumno A | Implementación completa | 20h |
-| Epic 2: NN | Alumno B | Forward/Backward propagation | 25h |
-| Epic 3: Apps | Alumno C | Aplicaciones y serialización | 20h |
-| Testing | Alumno D | 22 tests automatizados | 15h |
-| Documentación | Alumno E | README, video, presentación | 10h |
-| Integración | Todos | Code review y merge | 5h |
+| Epic 1: Tensor | Fredy Cardenas Aliaga | Implementación completa | 20h |
+| Epic 2: NN | Fredy Cardenas Aliaga | Forward/Backward propagation | 25h |
+| Epic 3: Apps | Fredy Cardenas Aliaga | Aplicaciones y serialización | 20h |
+| Testing | Fredy Cardenas Aliaga | 22 tests automatizados | 15h |
+| Documentación | Fredy Cardenas Aliaga | README, video, presentación | 10h |
+| Integración | Fredy Cardenas Aliaga | Code review y merge | 5h |
 
 **Herramientas de colaboración:**
 - GitHub para versionamiento
@@ -426,18 +426,12 @@ cd build && rm -rf * && cmake .. && make -j4 && ctest --verbose && ./pattern_cla
 
 ### Logros
 
-✅ Implementación completa de red neuronal desde cero  
-✅ Biblioteca de álgebra tensorial funcional y eficiente  
-✅ 3 aplicaciones prácticas funcionando al 100%  
-✅ 100% de tests passing (22/22)  
-✅ Serialización y portabilidad verificadas  
-✅ Código sin dependencias externas (máxima portabilidad)  
-
-### Evaluación del proyecto
-
-**Calidad técnica:** Excelente - código bien estructurado y documentado  
-**Rendimiento:** Adecuado para propósito académico y problemas pequeños  
-**Completitud:** 100% de los requisitos de los 3 Epics cumplidos  
+Implementación completa de red neuronal desde cero  
+Biblioteca de álgebra tensorial funcional y eficiente  
+3 aplicaciones prácticas funcionando al 100%  
+100% de tests passing (22/22)  
+Serialización y portabilidad verificadas  
+Código sin dependencias externas (máxima portabilidad)  
 
 ### Aprendizajes
 
