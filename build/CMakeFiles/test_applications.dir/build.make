@@ -72,28 +72,28 @@ include CMakeFiles/test_applications.dir/flags.make
 CMakeFiles/test_applications.dir/codegen:
 .PHONY : CMakeFiles/test_applications.dir/codegen
 
-CMakeFiles/test_applications.dir/tests/test_applications.cpp.o: CMakeFiles/test_applications.dir/flags.make
-CMakeFiles/test_applications.dir/tests/test_applications.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_applications.cpp
-CMakeFiles/test_applications.dir/tests/test_applications.cpp.o: CMakeFiles/test_applications.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_applications.dir/tests/test_applications.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_applications.dir/tests/test_applications.cpp.o -MF CMakeFiles/test_applications.dir/tests/test_applications.cpp.o.d -o CMakeFiles/test_applications.dir/tests/test_applications.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_applications.cpp
+CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: CMakeFiles/test_applications.dir/flags.make
+CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp
+CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: CMakeFiles/test_applications.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o -MF CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o.d -o CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp
 
-CMakeFiles/test_applications.dir/tests/test_applications.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_applications.dir/tests/test_applications.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_applications.cpp > CMakeFiles/test_applications.dir/tests/test_applications.cpp.i
+CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp > CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i
 
-CMakeFiles/test_applications.dir/tests/test_applications.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_applications.dir/tests/test_applications.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_applications.cpp -o CMakeFiles/test_applications.dir/tests/test_applications.cpp.s
+CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp -o CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s
 
 # Object files for target test_applications
 test_applications_OBJECTS = \
-"CMakeFiles/test_applications.dir/tests/test_applications.cpp.o"
+"CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o"
 
 # External object files for target test_applications
 test_applications_EXTERNAL_OBJECTS =
 
-test_applications: CMakeFiles/test_applications.dir/tests/test_applications.cpp.o
+test_applications: CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o
 test_applications: CMakeFiles/test_applications.dir/build.make
 test_applications: CMakeFiles/test_applications.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_applications"

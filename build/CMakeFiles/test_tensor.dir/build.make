@@ -72,28 +72,28 @@ include CMakeFiles/test_tensor.dir/flags.make
 CMakeFiles/test_tensor.dir/codegen:
 .PHONY : CMakeFiles/test_tensor.dir/codegen
 
-CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o: CMakeFiles/test_tensor.dir/flags.make
-CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_tensor.cpp
-CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o: CMakeFiles/test_tensor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o -MF CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o.d -o CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_tensor.cpp
+CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o: CMakeFiles/test_tensor.dir/flags.make
+CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_tensor.cpp
+CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o: CMakeFiles/test_tensor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o -MF CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o.d -o CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_tensor.cpp
 
-CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_tensor.cpp > CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.i
+CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_tensor.cpp > CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.i
 
-CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_tensor.cpp -o CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.s
+CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_tensor.cpp -o CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.s
 
 # Object files for target test_tensor
 test_tensor_OBJECTS = \
-"CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o"
+"CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o"
 
 # External object files for target test_tensor
 test_tensor_EXTERNAL_OBJECTS =
 
-test_tensor: CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o
+test_tensor: CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o
 test_tensor: CMakeFiles/test_tensor.dir/build.make
 test_tensor: CMakeFiles/test_tensor.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_tensor"

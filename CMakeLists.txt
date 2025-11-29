@@ -2,8 +2,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(PongAI CXX)
 
-# 2. Establecer el estándar de C++ (C++17 es suficiente para tu código)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 3. Indicar a CMake dónde encontrar los archivos de cabecera (.h)
@@ -22,15 +21,15 @@ add_executable(controller_demo_app src/utec/apps/ControllerDemo.cpp)
 enable_testing()
 
 # Prueba para la clase Tensor (Epic 1)
-add_executable(test_tensor tests/test_tensor.cpp)
+add_executable(test_tensor tests/project/test_tensor.cpp)
 add_test(NAME TestTensor COMMAND test_tensor)
 
 # Prueba para la biblioteca de Red Neuronal (Epic 2)
-add_executable(test_neural_network tests/test_neural_network.cpp)
+add_executable(test_neural_network tests/project/test_neural_network.cpp)
 add_test(NAME TestNeuralNetwork COMMAND test_neural_network)
 
 # Prueba para las aplicaciones y la portabilidad (Epic 3)
-add_executable(test_applications tests/test_applications.cpp)
+add_executable(test_applications tests/project/test_applications.cpp)
 add_test(NAME TestApplications COMMAND test_applications)
 
 # 6. Mensajes informativos para el usuario

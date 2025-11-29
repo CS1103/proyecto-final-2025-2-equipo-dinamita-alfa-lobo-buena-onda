@@ -276,77 +276,77 @@ src/utec/apps/SequencePredictor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequence_predictor_app.dir/build.make CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.s
 .PHONY : src/utec/apps/SequencePredictor.cpp.s
 
-tests/test_applications.o: tests/test_applications.cpp.o
-.PHONY : tests/test_applications.o
+tests/project/test_applications.o: tests/project/test_applications.cpp.o
+.PHONY : tests/project/test_applications.o
 
 # target to build an object file
-tests/test_applications.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/tests/test_applications.cpp.o
-.PHONY : tests/test_applications.cpp.o
+tests/project/test_applications.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o
+.PHONY : tests/project/test_applications.cpp.o
 
-tests/test_applications.i: tests/test_applications.cpp.i
-.PHONY : tests/test_applications.i
+tests/project/test_applications.i: tests/project/test_applications.cpp.i
+.PHONY : tests/project/test_applications.i
 
 # target to preprocess a source file
-tests/test_applications.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/tests/test_applications.cpp.i
-.PHONY : tests/test_applications.cpp.i
+tests/project/test_applications.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i
+.PHONY : tests/project/test_applications.cpp.i
 
-tests/test_applications.s: tests/test_applications.cpp.s
-.PHONY : tests/test_applications.s
+tests/project/test_applications.s: tests/project/test_applications.cpp.s
+.PHONY : tests/project/test_applications.s
 
 # target to generate assembly for a file
-tests/test_applications.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/tests/test_applications.cpp.s
-.PHONY : tests/test_applications.cpp.s
+tests/project/test_applications.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s
+.PHONY : tests/project/test_applications.cpp.s
 
-tests/test_neural_network.o: tests/test_neural_network.cpp.o
-.PHONY : tests/test_neural_network.o
+tests/project/test_neural_network.o: tests/project/test_neural_network.cpp.o
+.PHONY : tests/project/test_neural_network.o
 
 # target to build an object file
-tests/test_neural_network.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o
-.PHONY : tests/test_neural_network.cpp.o
+tests/project/test_neural_network.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o
+.PHONY : tests/project/test_neural_network.cpp.o
 
-tests/test_neural_network.i: tests/test_neural_network.cpp.i
-.PHONY : tests/test_neural_network.i
+tests/project/test_neural_network.i: tests/project/test_neural_network.cpp.i
+.PHONY : tests/project/test_neural_network.i
 
 # target to preprocess a source file
-tests/test_neural_network.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.i
-.PHONY : tests/test_neural_network.cpp.i
+tests/project/test_neural_network.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.i
+.PHONY : tests/project/test_neural_network.cpp.i
 
-tests/test_neural_network.s: tests/test_neural_network.cpp.s
-.PHONY : tests/test_neural_network.s
+tests/project/test_neural_network.s: tests/project/test_neural_network.cpp.s
+.PHONY : tests/project/test_neural_network.s
 
 # target to generate assembly for a file
-tests/test_neural_network.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.s
-.PHONY : tests/test_neural_network.cpp.s
+tests/project/test_neural_network.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.s
+.PHONY : tests/project/test_neural_network.cpp.s
 
-tests/test_tensor.o: tests/test_tensor.cpp.o
-.PHONY : tests/test_tensor.o
+tests/project/test_tensor.o: tests/project/test_tensor.cpp.o
+.PHONY : tests/project/test_tensor.o
 
 # target to build an object file
-tests/test_tensor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.o
-.PHONY : tests/test_tensor.cpp.o
+tests/project/test_tensor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o
+.PHONY : tests/project/test_tensor.cpp.o
 
-tests/test_tensor.i: tests/test_tensor.cpp.i
-.PHONY : tests/test_tensor.i
+tests/project/test_tensor.i: tests/project/test_tensor.cpp.i
+.PHONY : tests/project/test_tensor.i
 
 # target to preprocess a source file
-tests/test_tensor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.i
-.PHONY : tests/test_tensor.cpp.i
+tests/project/test_tensor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.i
+.PHONY : tests/project/test_tensor.cpp.i
 
-tests/test_tensor.s: tests/test_tensor.cpp.s
-.PHONY : tests/test_tensor.s
+tests/project/test_tensor.s: tests/project/test_tensor.cpp.s
+.PHONY : tests/project/test_tensor.s
 
 # target to generate assembly for a file
-tests/test_tensor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/tests/test_tensor.cpp.s
-.PHONY : tests/test_tensor.cpp.s
+tests/project/test_tensor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.s
+.PHONY : tests/project/test_tensor.cpp.s
 
 # Help Target
 help:
@@ -372,15 +372,15 @@ help:
 	@echo "... src/utec/apps/SequencePredictor.o"
 	@echo "... src/utec/apps/SequencePredictor.i"
 	@echo "... src/utec/apps/SequencePredictor.s"
-	@echo "... tests/test_applications.o"
-	@echo "... tests/test_applications.i"
-	@echo "... tests/test_applications.s"
-	@echo "... tests/test_neural_network.o"
-	@echo "... tests/test_neural_network.i"
-	@echo "... tests/test_neural_network.s"
-	@echo "... tests/test_tensor.o"
-	@echo "... tests/test_tensor.i"
-	@echo "... tests/test_tensor.s"
+	@echo "... tests/project/test_applications.o"
+	@echo "... tests/project/test_applications.i"
+	@echo "... tests/project/test_applications.s"
+	@echo "... tests/project/test_neural_network.o"
+	@echo "... tests/project/test_neural_network.i"
+	@echo "... tests/project/test_neural_network.s"
+	@echo "... tests/project/test_tensor.o"
+	@echo "... tests/project/test_tensor.i"
+	@echo "... tests/project/test_tensor.s"
 .PHONY : help
 
 

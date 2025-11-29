@@ -72,28 +72,28 @@ include CMakeFiles/test_neural_network.dir/flags.make
 CMakeFiles/test_neural_network.dir/codegen:
 .PHONY : CMakeFiles/test_neural_network.dir/codegen
 
-CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o: CMakeFiles/test_neural_network.dir/flags.make
-CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_neural_network.cpp
-CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o: CMakeFiles/test_neural_network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o -MF CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o.d -o CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_neural_network.cpp
+CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o: CMakeFiles/test_neural_network.dir/flags.make
+CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_neural_network.cpp
+CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o: CMakeFiles/test_neural_network.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o -MF CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o.d -o CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_neural_network.cpp
 
-CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_neural_network.cpp > CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.i
+CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_neural_network.cpp > CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.i
 
-CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/test_neural_network.cpp -o CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.s
+CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_neural_network.cpp -o CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.s
 
 # Object files for target test_neural_network
 test_neural_network_OBJECTS = \
-"CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o"
+"CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o"
 
 # External object files for target test_neural_network
 test_neural_network_EXTERNAL_OBJECTS =
 
-test_neural_network: CMakeFiles/test_neural_network.dir/tests/test_neural_network.cpp.o
+test_neural_network: CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o
 test_neural_network: CMakeFiles/test_neural_network.dir/build.make
 test_neural_network: CMakeFiles/test_neural_network.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_neural_network"
