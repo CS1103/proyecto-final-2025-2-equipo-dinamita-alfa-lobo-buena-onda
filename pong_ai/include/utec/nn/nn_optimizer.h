@@ -4,7 +4,7 @@
 #include <utec/nn/nn_interfaces.h>
 #include <utec/algebra/tensor.h>
 #include <cmath>
-
+#include <map>
 template<typename T, size_t N>
 using Tensor = utec::algebra::Tensor<T, N>;
 

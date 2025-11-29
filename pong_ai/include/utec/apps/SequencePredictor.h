@@ -5,6 +5,7 @@
 #include <memory>
 #include <cmath>
 #include <random>
+#include <string>
 #include <utec/algebra/tensor.h>
 #include <utec/nn/neural_network.h>
 #include <utec/nn/nn_dense.h>
@@ -23,7 +24,6 @@ class SequencePredictor {
 private:
     NeuralNetwork<T> nn_;
 
-    // Funciones de inicialización (Xavier y Zero) - Debes copiarlas en todos los .h de apps o usar un .h de utils
     void init_weights_xavier(Tensor<T, 2>& t) {
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -42,17 +42,15 @@ private:
 
     template <typename InitWFun, typename InitBFun>
     void init_network(InitWFun init_w_fun, InitBFun init_b_fun) {
-        // Topología 1-4-1
-        // Entrada: 1 número
+
         nn_.add_layer(std::make_unique<Dense<T>>(
             1, 4, init_w_fun, init_b_fun
         ));
         nn_.add_layer(std::make_unique<ReLU<T>>());
-        // Salida: 1 número (sin activación final para regresión)
+
         nn_.add_layer(std::make_unique<Dense<T>>(
             4, 1, init_w_fun, init_b_fun
         ));
-        // NOTA: No se usa Sigmoid, es una salida lineal/de identidad para regresión.
     }
 
 public:
@@ -63,34 +61,46 @@ public:
         );
     }
 
+    // -----------------------------------------------------------------
+    // MÉTODOS DE SERIALIZACIÓN (Portabilidad - Requisito Epic 3)
+    // -----------------------------------------------------------------
+
+    void save_weights(const std::string& filepath) const {
+        nn_.save_state(filepath);
+    }
+
+    void load_weights(const std::string& filepath) {
+        nn_.load_state(filepath);
+    }
+
+    utec::algebra::Tensor<T, 2> predict(const utec::algebra::Tensor<T, 2>& X) {
+        return nn_.predict(X);
+    }
+
     void run_series_experiment() {
         std::cout << "\n--- Ejecutando SequencePredictor (Regresión Simple) ---" << std::endl;
 
-        // Datos: Intentamos enseñar a la red la función f(x) = x * 2 + 1
         Tensor<T, 2> X(5, 1);
-        X = {1.0, 2.0, 3.0, 4.0, 5.0}; // Entradas
-        
+        X = {1.0, 2.0, 3.0, 4.0, 5.0};
+
         Tensor<T, 2> Y(5, 1);
-        Y = {3.0, 5.0, 7.0, 9.0, 11.0}; // Salidas esperadas (X*2 + 1)
+        Y = {3.0, 5.0, 7.0, 9.0, 11.0};
 
         size_t epochs = 5000;
         T learning_rate = 0.005;
-        
+
         std::cout << "Entrenando con Adam y MSELoss..." << std::endl;
 
-        // Entrenamiento: Adam y MSELoss (ideal para regresión)
-        nn_.train<MSELoss, Adam>(X, Y, epochs, 5, learning_rate);
+        nn_.template train<utec::neural_network::MSELoss, utec::neural_network::Adam>(X, Y, epochs, 5, learning_rate);
 
-        // Validación
         auto predictions = nn_.predict(X);
-        
+
         std::cout << "\nResultados de la validación:" << std::endl;
         std::cout << "Input\tEsperado\tPredicho" << std::endl;
         for(size_t i = 0; i < 5; ++i) {
             std::cout << X(i, 0) << "\t" << Y(i, 0) << "\t\t" << predictions(i, 0) << std::endl;
         }
 
-        // Prueba de Generalización (predicción fuera del rango de entrenamiento)
         Tensor<T, 2> X_test(2, 1);
         X_test = {6.0, 10.0};
         auto test_predictions = nn_.predict(X_test);

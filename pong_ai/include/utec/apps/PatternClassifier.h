@@ -5,6 +5,7 @@
 #include <memory>
 #include <cmath>
 #include <random>
+#include <string> // Necesario para std::string en save/load
 #include <utec/algebra/tensor.h>
 #include <utec/nn/neural_network.h>
 #include <utec/nn/nn_dense.h>
@@ -25,7 +26,7 @@ private:
 
     template <typename InitWFun, typename InitBFun>
     void init_network(InitWFun init_w_fun, InitBFun init_b_fun) {
-        // Topología 2-4-1
+        // Topología 2-4-1 (Entrada: 2, Capa Oculta: 4, Salida: 1)
         nn_.add_layer(std::make_unique<Dense<T>>(
             2, 4, init_w_fun, init_b_fun
         ));
@@ -36,7 +37,7 @@ private:
         nn_.add_layer(std::make_unique<Sigmoid<T>>());
     }
 
-    // Funciones de inicialización (replicadas del main.cpp)
+    // Funciones de inicialización
     void init_weights_xavier(Tensor<T, 2>& t) {
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -61,6 +62,35 @@ public:
         );
     }
 
+    // -----------------------------------------------------------------
+    // MÉTODOS DE SERIALIZACIÓN (Portabilidad - Requisito Epic 3)
+    // -----------------------------------------------------------------
+
+    /**
+     * @brief Guarda los pesos entrenados de la red en un archivo binario.
+     */
+    void save_weights(const std::string& filepath) const {
+        nn_.save_state(filepath);
+    }
+
+    /**
+     * @brief Carga los pesos de un archivo para restaurar una red previamente entrenada.
+     */
+    void load_weights(const std::string& filepath) {
+        nn_.load_state(filepath);
+    }
+
+    /**
+     * @brief Realiza una predicción con la red neuronal.
+     */
+    utec::algebra::Tensor<T, 2> predict(const utec::algebra::Tensor<T, 2>& X) {
+        return nn_.predict(X);
+    }
+
+    // -----------------------------------------------------------------
+    // LÓGICA DE ENTRENAMIENTO (Existente, con corrección)
+    // -----------------------------------------------------------------
+
     void run_xor_experiment() {
         std::cout << "--- Ejecutando PatternClassifier (XOR) ---" << std::endl;
 
@@ -72,27 +102,26 @@ public:
 
         size_t epochs = 10000;
         T learning_rate = 0.01;
-        
+
         std::cout << "Entrenando con Adam..." << std::endl;
 
         // Entrenamiento: Adam y BCE
-        nn_.train<BinaryCrossEntropyLoss, Adam>(X, Y, epochs, 4, learning_rate);
+        nn_.template train<utec::neural_network::BinaryCrossEntropyLoss, utec::neural_network::Adam>(X, Y, epochs, 4, learning_rate);
 
         // Validación
         auto predictions = nn_.predict(X);
-        
-        std::cout << "\nResultados:" << std::endl;
+
+        std::cout << "\nResultados de Validación:" << std::endl;
         std::cout << "Input\t\tEsperado\tClase Predicha" << std::endl;
         for(size_t i = 0; i < 4; ++i) {
+            // LÍNEA CORREGIDA: Acceso al valor de la predicción
             double pred_val = predictions(i, 0);
             int final_class = (pred_val > 0.5) ? 1 : 0;
-            
-            std::cout << "(" << X(i, 0) << "," << X(i, 1) << ")\t" 
+
+            std::cout << "(" << X(i, 0) << "," << X(i, 1) << ")\t"
                       << Y(i, 0) << "\t\t" << final_class << std::endl;
         }
     }
-    
-    // Aquí puedes añadir los métodos save/load si los implementaste
 };
 
 } // namespace apps

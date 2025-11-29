@@ -50,14 +50,14 @@ public:
 
 // Binary Cross Entropy Loss: BCE = -(1/n) * Σ[y*log(p) + (1-y)*log(1-p)]
 template<typename T>
-class BCELoss final : public ILoss<T, 2> {
+class BinaryCrossEntropyLoss final : public ILoss<T, 2> {
 private:
     utec::algebra::Tensor<T, 2> y_predicted_;
     utec::algebra::Tensor<T, 2> y_true_;
     static constexpr T epsilon = T{1e-15};  // Para evitar log(0)
     
 public:
-    BCELoss(const utec::algebra::Tensor<T, 2>& y_prediction, 
+    BinaryCrossEntropyLoss(const utec::algebra::Tensor<T, 2>& y_prediction,
             const utec::algebra::Tensor<T, 2>& y_true) 
         : y_predicted_(y_prediction), y_true_(y_true) {
         
