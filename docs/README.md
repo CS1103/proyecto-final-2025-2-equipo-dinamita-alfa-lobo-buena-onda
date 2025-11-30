@@ -420,6 +420,7 @@ Implementa la función de activación Sigmoide: $f(x) = 1 / (1 + e^{-x})$.
 ---
 
 ### nnDense
+---
 
 El archivo `NN_DENSE.H` define la clase `utec::neural_network::Dense<T>`, que implementa una capa completamente conectada (Fully Connected Layer) en una red neuronal. Esta capa realiza una transformación lineal sobre la entrada: $\mathbf{Y} = \mathbf{X} \cdot \mathbf{W} + \mathbf{b}$.
 
@@ -432,8 +433,8 @@ Las complejidades se centran en el costo de la multiplicación matricial, que es
 | **S_BATCH** | Tamaño del batch actual (número de muestras). |
 | **M_IN** | Número de características de entrada. |
 | **M_OUT** | Número de neuronas de salida. |
-| **P_LAYER** | Número total de parámetros de la capa ($\mathbf{W} + \mathbf{b}$). |
-| **C_MAT_MUL** | Costo de la Multiplicación Matricial Clave: $\mathbf{O}(\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{IN}} \cdot \mathbf{M}_{\text{OUT}})$. |
+| **P_LAYER** | Número total de parámetros de la capa (W + b). |
+| **C_MAT_MUL** | Costo de la Multiplicación Matricial Clave: O(S_BATCH * M_IN * M_OUT). |
 
 ---
 
@@ -443,16 +444,16 @@ Las complejidades se centran en el costo de la multiplicación matricial, que es
 
 | Método | Propósito | Complejidad | Observaciones |
 | :--- | :--- | :--- | :--- |
-| `Dense(in_f, out_f, init_w_fun, init_b_fun)` | Constructor principal. Inicializa las matrices de pesos (`weights_`) y los vectores de sesgos (`biases_`) con las funciones proporcionadas, y los gradientes a cero. | $\mathbf{O}(\mathbf{M}_{\text{IN}} \cdot \mathbf{M}_{\text{OUT}})$ | La inicialización domina el costo. |
-| `Dense()` | Constructor vacío, utilizado principalmente antes de la deserialización (`load_state`). | $\mathbf{O}(1)$ | Inicializa las dimensiones a cero. |
+| `Dense(in_f, out_f, init_w_fun, init_b_fun)` | Constructor principal. Inicializa las matrices de pesos (`weights_`) y los vectores de sesgos (`biases_`) con las funciones proporcionadas, y los gradientes a cero. | O(M_IN * M_OUT) | La inicialización domina el costo. |
+| `Dense()` | Constructor vacío, utilizado principalmente antes de la deserialización (`load_state`). | O(1) | Inicializa las dimensiones a cero. |
 
 #### 2. Algoritmos de Propagación y Retropropagación
 
 | Método | Propósito | Complejidad | Explicación del Algoritmo |
 | :--- | :--- | :--- | :--- |
-| `forward(const Tensor<T, 2>& x)` | Propagación hacia adelante: $\mathbf{Y} = \mathbf{X} \cdot \mathbf{W} + \mathbf{b}$. | $\mathbf{O}(\mathbf{C}_{\text{MAT\_MUL}})$ | Domina la multiplicación matricial $\mathbf{X} \cdot \mathbf{W}$. |
-| `backward(const Tensor<T, 2>& dZ)` | Retropropagación. Calcula los gradientes internos ($\mathbf{dW}, \mathbf{db}$) y el gradiente para la capa anterior ($\mathbf{dX}$). | $\mathbf{O}(\mathbf{C}_{\text{MAT\_MUL}})$ | Domina el cálculo de $\mathbf{dW} = \mathbf{X}^{\text{T}} \cdot \mathbf{dZ}$ y $\mathbf{dX} = \mathbf{dZ} \cdot \mathbf{W}^{\text{T}}$. |
-| `update_params(IOptimizer<T>& optimizer)` | Aplica las actualizaciones del optimizador a los pesos (`weights_`) y sesgos (`biases_`) usando los gradientes calculados. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Costo lineal con el número de parámetros de la capa. |
+| `forward(const Tensor<T, 2>& x)` | Propagación hacia adelante: Y = X * W + b. | O(C_MAT_MUL) | Domina la multiplicación matricial X * W. |
+| `backward(const Tensor<T, 2>& dZ)` | Retropropagación. Calcula los gradientes internos (dW, db) y el gradiente para la capa anterior (dX). | O(C_MAT_MUL) | Domina el cálculo de dW = X^T * dZ y dX = dZ * W^T. |
+| `update_params(IOptimizer<T>& optimizer)` | Aplica las actualizaciones del optimizador a los pesos (`weights_`) y sesgos (`biases_`) usando los gradientes calculados. | O(P_LAYER) | Costo lineal con el número de parámetros de la capa. |
 
 #### 3. Serialización (Carga y Guardado de Parámetros)
 
@@ -475,12 +476,12 @@ Las complejidades son las estimaciones de costo **esperadas** para las implement
 
 | Símbolo | Descripción |
 | :--- | :--- |
-| **S\_BATCH** | Tamaño del batch actual (número de muestras). |
-| **M\_IN** | Número de características de entrada. |
-| **M\_OUT** | Número de neuronas de salida. |
-| **P\_LAYER** | Número total de parámetros de la capa. |
-| **N\_ELEMENTS** | Número total de elementos en el tensor de salida/gradiente ($\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{OUT}}$). |
-| **C\_MAT\_OP** | Costo de operaciones matriciales (ej. Multiplicación Matricial, $\mathbf{C}_{\text{mat\_mul}}$). |
+| **S_BATCH** | Tamaño del batch actual (número de muestras). |
+| **M_IN** | Número de características de entrada. |
+| **M_OUT** | Número de neuronas de salida. |
+| **P_LAYER** | Número total de parámetros de la capa. |
+| **N_ELEMENTS** | Número total de elementos en el tensor de salida/gradiente (S_BATCH * M_OUT). |
+| **C_MAT_OP** | Costo de operaciones matriciales (ej. Multiplicación Matricial, C_mat_mul). |
 
 ---
 
@@ -490,9 +491,9 @@ Define el comportamiento base de cualquier componente funcional de la red (capas
 
 | Método | Propósito | Complejidad Esperada | Requisito Clave |
 | :--- | :--- | :--- | :--- |
-| `forward(...)` | **Propagación hacia Adelante:** Calcula la salida de la capa. | $\mathbf{O}(\mathbf{C}_{\text{MAT\_OP}})$ o $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Debe almacenar la entrada para el cálculo del `backward`. |
-| `backward(...)` | **Retropropagación:** Calcula el gradiente para la capa anterior ($\mathbf{dX}$). | $\mathbf{O}(\mathbf{C}_{\text{MAT\_OP}})$ o $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Debe calcular y almacenar los gradientes de los parámetros internos. |
-| `update_params(...)` | **Actualización de Parámetros:** Aplica el optimizador a los parámetros internos de la capa. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Implementación vacía por defecto ($\mathbf{O}(1)$) para capas sin parámetros. |
+| `forward(...)` | **Propagación hacia Adelante:** Calcula la salida de la capa. | O(C_MAT_OP) o O(N_ELEMENTS) | Debe almacenar la entrada para el cálculo del `backward`. |
+| `backward(...)` | **Retropropagación:** Calcula el gradiente para la capa anterior (dX). | O(C_MAT_OP) o O(N_ELEMENTS) | Debe calcular y almacenar los gradientes de los parámetros internos. |
+| `update_params(...)` | **Actualización de Parámetros:** Aplica el optimizador a los parámetros internos de la capa. | O(P_LAYER) | Implementación vacía por defecto (O(1)) para capas sin parámetros. |
 
 ---
 
@@ -521,7 +522,7 @@ Define el contrato para los algoritmos de optimización encargados de actualizar
 ### nnLoss
 ---
 
-El archivo `NN_LOSS.H` define las implementaciones concretas de las funciones de pérdida más comunes, heredando de la interfaz `ILoss<T, 2>`. Estas clases son responsables de calcular el error entre las predicciones ($\mathbf{Y}_{\text{pred}}$) y los valores verdaderos ($\mathbf{Y}_{\text{true}}$), y generar el gradiente inicial para la retropropagación.
+El archivo `NN_LOSS.H` define las implementaciones concretas de las funciones de pérdida más comunes, heredando de la interfaz `ILoss<T, 2>`. Estas clases son responsables de calcular el error entre las predicciones (Y_pred) y los valores verdaderos (Y_true), y generar el gradiente inicial para la retropropagación.
 
 #### ⚙️ Notación de Complejidad Algorítmica (O)
 
@@ -529,21 +530,21 @@ Las complejidades se basan en la iteración lineal sobre todos los elementos de 
 
 | Símbolo | Descripción |
 | :--- | :--- |
-| **S\_BATCH** | Número de muestras en el lote actual. |
-| **M\_OUT** | Número de neuronas de salida. |
-| **N\_ELEMENTS** | Número total de elementos en el tensor de salida ($\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{OUT}}$). |
+| **S_BATCH** | Número de muestras en el lote actual. |
+| **M_OUT** | Número de neuronas de salida. |
+| **N_ELEMENTS** | Número total de elementos en el tensor de salida (S_BATCH * M_OUT). |
 
 ---
 
 #### 💻 1. Clase `template <typename T> class MSELoss`
 
-Implementa la **Pérdida por Error Cuadrático Medio (Mean Squared Error)**: $$\text{MSE} = \frac{1}{n} \sum (\mathbf{Y}_{\text{pred}} - \mathbf{Y}_{\text{true}})^2$$
+Implementa la **Pérdida por Error Cuadrático Medio (Mean Squared Error)**: MSE = (1/n) * Sum((Y_pred - Y_true)^2)
 
 | Método | Propósito | Complejidad | Observaciones |
 | :--- | :--- | :--- | :--- |
-| `MSELoss(...)` | Constructor. Almacena las predicciones y el objetivo. | $\mathbf{O}(1)$ | Verifica que las formas de los tensores coincidan. |
-| `loss() const` | Calcula el valor escalar del MSE promediado sobre $\mathbf{N}_{\text{ELEMENTS}}$. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Involucra resta, elevación al cuadrado y suma lineal. |
-| `loss_gradient() const` | Calcula el gradiente inicial: $\mathbf{d}\mathbf{L}/\mathbf{d}\mathbf{Y}_{\text{pred}} = \frac{2}{n} (\mathbf{Y}_{\text{pred}} - \mathbf{Y}_{\text{true}})$. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Resta elemento a elemento seguida de una multiplicación por factor escalar. |
+| `MSELoss(...)` | Constructor. Almacena las predicciones y el objetivo. | O(1) | Verifica que las formas de los tensores coincidan. |
+| `loss() const` | Calcula el valor escalar del MSE promediado sobre N_ELEMENTS. | O(N_ELEMENTS) | Involucra resta, elevación al cuadrado y suma lineal. |
+| `loss_gradient() const` | Calcula el gradiente inicial: dL/dY_pred = (2/n) * (Y_pred - Y_true). | O(N_ELEMENTS) | Resta elemento a elemento seguida de una multiplicación por factor escalar. |
 
 ---
 
@@ -592,13 +593,13 @@ Implementa el optimizador **Adam (Adaptive Moment Estimation)**, que utiliza pro
 
 | Método | Propósito | Complejidad | Observaciones |
 | :--- | :--- | :--- | :--- |
-| `Adam(...)` | Constructor. Inicializa hiperparámetros ($\mathbf{LR}, \beta_1, \beta_2, \epsilon$) y el contador de pasos $\mathbf{t}=0$. | $\mathbf{O}(1)$ | N/A |
-| `update(...)` | **Algoritmo de Actualización Adam.** | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | El costo es lineal con $\mathbf{P}_{\text{LAYER}}$. La gestión de momentos (`std::map`) es $\mathbf{O}(\log(\mathbf{L}_{\text{DENSE}}))$ para acceso. |
-| `step()` | **Paso Global.** Incrementa el contador de pasos global $\mathbf{t}$. | $\mathbf{O}(1)$ | Es esencial para el cálculo de la corrección de *bias* en `Adam`. |
+| `Adam(...)` | Constructor. Inicializa hiperparámetros (LR, beta1, beta2, epsilon) y el contador de pasos t=0. | O(1) | N/A |
+| `update(...)` | **Algoritmo de Actualización Adam.** | O(P_LAYER) | El costo es lineal con P_LAYER. La gestión de momentos (`std::map`) es O(log(L_DENSE)) para acceso. |
+| `step()` | **Paso Global.** Incrementa el contador de pasos global t. | O(1) | Es esencial para el cálculo de la corrección de bias en `Adam`. |
 
 ---
 
-### ControllerDEmo
+### ControllerDemo
 ---
 
 El archivo `CONTROLLER_DEMO.H` define la clase `ControllerDemo<T>`, que encapsula una **Red Neuronal** y un **Simulador de Entorno Físico Simplificado** (análogo a un entorno de OpenAI Gym). Esta clase entrena la red para aprender una política de control que mantiene una partícula dentro de ciertos límites.
@@ -607,14 +608,14 @@ El archivo `CONTROLLER_DEMO.H` define la clase `ControllerDemo<T>`, que encapsul
 
 | Símbolo | Descripción |
 | :--- | :--- |
-| $\mathbf{W}_{\text{layer}}$ | Número de parámetros (pesos o sesgos) en una capa `Dense`. |
-| $\mathbf{B}_{\text{layer}}$ | Número de bias en una capa `Dense`. |
-| $\mathbf{W}_{\text{total}}$ | Número total de parámetros (pesos y bias) en toda la red neuronal. |
-| $\mathbf{L}$ | Número de capas en la red. |
-| $\mathbf{D}$ | Tamaño total del dataset de entrenamiento (fijo en 12 para el demo). |
-| $\mathbf{Epochs}$ | Número de épocas de entrenamiento. |
-| $\mathbf{Batch\_Size}$ | Tamaño del lote de entrenamiento (fijo en 4 para el demo). |
-| $\mathbf{C}_{\text{fp\_bp}}$ | Costo de una pasada *Forward* y *Backpropagation* para una muestra: $\mathbf{O}(\mathbf{W}_{\text{total}})$. |
+| **W_layer** | Número de parámetros (pesos o sesgos) en una capa `Dense`. |
+| **B_layer** | Número de bias en una capa `Dense`. |
+| **W_total** | Número total de parámetros (pesos y bias) en toda la red neuronal. |
+| **L** | Número de capas en la red. |
+| **D** | Tamaño total del dataset de entrenamiento (fijo en 12 para el demo). |
+| **Epochs** | Número de épocas de entrenamiento. |
+| **Batch_Size** | Tamaño del lote de entrenamiento (fijo en 4 para el demo). |
+| **C_fp_bp** | Costo de una pasada Forward y Backpropagation para una muestra: O(W_total). |
 
 ---
 
@@ -660,11 +661,11 @@ Este método ejecuta el flujo completo de **aprendizaje supervisado** para imita
 
 | Algoritmo/Fase | Propósito | Complejidad | Observaciones |
 | :--- | :--- | :--- | :--- |
-| **Inicialización de Dataset** | Define el set de datos $\mathbf{X}$ (estado) y $\mathbf{Y}$ (acción experta) con $\mathbf{D}=12$ muestras. | $\mathbf{O}(1)$ | Se realiza una vez. |
-| **Entrenamiento** | Llama a `nn_.train<BinaryCrossEntropyLoss, Adam>(...)`. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | Es el cuello de botella del algoritmo. |
-| **Predicción** | Genera predicciones sobre el set $\mathbf{X}$ de entrenamiento para evaluar la **Accuracy**. | $\mathbf{O}(\mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | Pasa $\mathbf{D}$ muestras una vez a través de la red. |
-| **Validación de Precisión** | Compara la acción predicha (`pred > 0.5`) con la acción esperada ($\mathbf{Y}$) y calcula la *Accuracy*. | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ | Bucle lineal sobre las 12 muestras. |
-| **Pruebas de Generalización** | Genera predicciones sobre un set de prueba $\mathbf{X}_{\text{test}}$ (3 muestras). | $\mathbf{O}(\mathbf{D}_{\text{test}} \cdot \mathbf{W}_{\text{total}}) = \mathbf{O}(1)$ | Evalúa la capacidad de generalización del modelo. |
+| **Inicialización de Dataset** | Define el set de datos X (estado) y Y (acción experta) con D=12 muestras. | O(1) | Se realiza una vez. |
+| **Entrenamiento** | Llama a `nn_.train<BinaryCrossEntropyLoss, Adam>(...)`. | O(Epochs * D * W_total) | Es el cuello de botella del algoritmo. |
+| **Predicción** | Genera predicciones sobre el set X de entrenamiento para evaluar la **Accuracy**. | O(D * W_total) | Pasa D muestras una vez a través de la red. |
+| **Validación de Precisión** | Compara la acción predicha (`pred > 0.5`) con la acción esperada (Y) y calcula la Accuracy. | O(D) = O(1) | Bucle lineal sobre las 12 muestras. |
+| **Pruebas de Generalización** | Genera predicciones sobre un set de prueba X_test (3 muestras). | O(D_test * W_total) = O(1) | Evalúa la capacidad de generalización del modelo. |
 
 ---
 
@@ -720,11 +721,11 @@ El método `run_xor_experiment()` gestiona la carga del *dataset* XOR, la config
 
 | Algoritmo/Fase | Propósito | Hiperparámetros | Complejidad Dominante |
 | :--- | :--- | :--- | :--- |
-| **Inicialización de Dataset** | Carga las 4 muestras del XOR ($\mathbf{X}$ y $\mathbf{Y}$). | N/A | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ |
-| **Entrenamiento** | Llama a `nn_.train` utilizando **Adam** y **Binary Cross-Entropy Loss** por $\mathbf{20000}$ épocas. | $\mathbf{Epochs}=20000$, $\mathbf{LR}=0.05$, $\mathbf{Batch\_Size}=4$ | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ |
-| **Predicción** | Predice los 4 resultados de entrenamiento. | N/A | $\mathbf{O}(\mathbf{D} \cdot \mathbf{W}_{\text{total}})$ |
-| **Validación de Precisión** | Compara las predicciones con el *threshold* $\mathbf{0.5}$ para calcular la *Accuracy*. | $\mathbf{Threshold}=0.5$ | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ |
-| **Prueba de Robustez** | Prueba el modelo con entradas con ruido (ej. 0.05 en lugar de 0.0) para evaluar la generalización. | N/A | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}}) = \mathbf{O}(1)$ |
+| **Inicialización de Dataset** | Carga las 4 muestras del XOR (X y Y). | N/A | O(D) = O(1) |
+| **Entrenamiento** | Llama a `nn_.train` utilizando **Adam** y **Binary Cross-Entropy Loss** por 20000 épocas. | Epochs=20000, LR=0.05, Batch_Size=4 | O(Epochs * D * W_total) |
+| **Predicción** | Predice los 4 resultados de entrenamiento. | N/A | O(D * W_total) |
+| **Validación de Precisión** | Compara las predicciones con el *threshold* 0.5 para calcular la *Accuracy*. | Threshold=0.5 | O(D) = O(1) |
+| **Prueba de Robustez** | Prueba el modelo con entradas con ruido (ej. 0.05 en lugar de 0.0) para evaluar la generalización. | N/A | O(D_samples * W_total) = O(1) |
 
 ---
 
@@ -732,10 +733,10 @@ El método `run_xor_experiment()` gestiona la carga del *dataset* XOR, la config
 
 | Método | Propósito | Complejidad | Observaciones |
 | :--- | :--- | :--- | :--- |
-| `save_weights(...)` | Delega la serialización de parámetros de la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ | Requisito de portabilidad. |
-| `load_weights(...)` | Delega la carga de parámetros. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ | Requisito de portabilidad. |
-| `predict(const X)` | Realiza la inferencia utilizando la propagación hacia adelante (`nn_.predict`). | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}})$ | Expone la funcionalidad principal de la red. |
-| `train<...>(...)` | Expone el método de entrenamiento de la red para que pueda ser llamado con diferentes optimizadores y funciones de pérdida. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | Permite flexibilidad para pruebas. |
+| `save_weights(...)` | Delega la serialización de parámetros de la red. | O(W_total) | Requisito de portabilidad. |
+| `load_weights(...)` | Delega la carga de parámetros. | O(W_total) | Requisito de portabilidad. |
+| `predict(const X)` | Realiza la inferencia utilizando la propagación hacia adelante (`nn_.predict`). | O(D_samples * W_total) | Expone la funcionalidad principal de la red. |
+| `train<...>(...)` | Expone el método de entrenamiento de la red para que pueda ser llamado con diferentes optimizadores y funciones de pérdida. | O(Epochs * D * W_total) | Permite flexibilidad para pruebas. |
 
 ---
 
@@ -796,10 +797,10 @@ Este método ejecuta el flujo completo para aprender la relación $\mathbf{Y} = 
 
 | Método | Propósito | Complejidad |
 | :--- | :--- | :--- |
-| `save_weights(...)` | Delega la serialización de parámetros de la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
-| `load_weights(...)` | Delega la carga de parámetros. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
-| `predict(const X)` | Realiza la inferencia (propagación hacia adelante). | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}})$ |
-| `train<...>(...)` | Expone el método de entrenamiento de la red. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ |
+| `save_weights(...)` | Delega la serialización de parámetros de la red. | O(W_total) |
+| `load_weights(...)` | Delega la carga de parámetros. | O(W_total) |
+| `predict(const X)` | Realiza la inferencia (propagación hacia adelante). | O(D_samples * W_total) |
+| `train<...>(...)` | Expone el método de entrenamiento de la red. | O(Epochs * D * W_total) |
 
 ---
 
