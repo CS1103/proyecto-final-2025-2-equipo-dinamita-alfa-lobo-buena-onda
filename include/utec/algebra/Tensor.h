@@ -14,6 +14,21 @@
 #include <initializer_list>
 #include <sstream>
 
+/**
+ * =================================================================
+ * NOTACIÓN DE COMPLEJIDAD ALGORÍTMICA (O)
+ * =================================================================
+ * N: Rango del Tensor (número de dimensiones).
+ * S: Tamaño total del Tensor (número de elementos, producto de todas las dimensiones).
+ * S_res: Tamaño del Tensor resultado después de aplicar Broadcasting.
+ * B: Tamaño del lote (Batch Size) = Producto de shape[0] * ... * shape[N-3].
+ * M: Filas de la submatriz (shape[N-2]).
+ * K: Dimensión común para la multiplicación matricial (shape1[N-1] = shape2[N-2]).
+ * L: Columnas de la submatriz (shape[N-1]).
+ * C_mat_mul: Costo de una Multiplicación Matricial por Lotes: O(B * M * K * L).
+ * =================================================================
+ */
+
 namespace utec {
 namespace algebra {
 
