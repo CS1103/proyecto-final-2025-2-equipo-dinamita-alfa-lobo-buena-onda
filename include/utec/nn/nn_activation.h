@@ -13,22 +13,19 @@ namespace neural_network {
 template<typename T>
 class ReLU final : public ILayer<T> {
 private:
-    utec::algebra::Tensor<T, 2> input_;  // Guardamos la entrada para backward
+    utec::algebra::Tensor<T, 2> input_;
     
 public:
-    // Forward: aplica ReLU elemento a elemento
     utec::algebra::Tensor<T, 2> forward(const utec::algebra::Tensor<T, 2>& z) override {
-        input_ = z;  // Guardamos para usar en backward
+        input_ = z;
         
         auto result = z;
-        // ReLU: si x < 0 entonces 0, sino x
         for (auto& val : result) {
             val = std::max(T{0}, val);
         }
         return result;
     }
     
-    // Backward: derivada de ReLU es 1 si x > 0, sino 0
     utec::algebra::Tensor<T, 2> backward(const utec::algebra::Tensor<T, 2>& gradient) override {
         auto result = gradient;
         
@@ -36,8 +33,7 @@ public:
         auto it_input = input_.cbegin();
         
         while (it_grad != result.end()) {
-            // Si la entrada era <= 0, el gradiente se hace 0
-            if (*it_input < T{0}) {
+            if (*it_input <= T{0}) {  // ⭐ Cambio: <= en lugar de <
                 *it_grad = T{0};
             }
             ++it_grad;
@@ -46,29 +42,35 @@ public:
         
         return result;
     }
+    
+    // No tiene parámetros, así que update_params no hace nada (heredado de ILayer)
 };
 
 // Función de activación Sigmoid: f(x) = 1 / (1 + e^(-x))
 template<typename T>
 class Sigmoid final : public ILayer<T> {
 private:
-    utec::algebra::Tensor<T, 2> output_;  // Guardamos la salida para backward
+    utec::algebra::Tensor<T, 2> output_;
+    
+    // ⭐ CRÍTICO: Epsilon para prevenir valores exactos de 0 o 1
+    static constexpr T EPSILON = T{1e-7};
     
 public:
-    // Forward: aplica sigmoid elemento a elemento
     utec::algebra::Tensor<T, 2> forward(const utec::algebra::Tensor<T, 2>& z) override {
         auto result = z;
         
         for (auto& val : result) {
-            // Sigmoid: 1 / (1 + e^(-x))
-            val = T{1} / (T{1} + std::exp(-val));
+            // Sigmoid básico
+            T sigmoid_val = T{1} / (T{1} + std::exp(-val));
+            
+            // ⭐ CLIP para evitar exactamente 0 o 1 (causa problemas con BCE)
+            val = std::max(EPSILON, std::min(T{1} - EPSILON, sigmoid_val));
         }
         
-        output_ = result;  // Guardamos para usar en backward
+        output_ = result;
         return result;
     }
     
-    // Backward: derivada de sigmoid es sigmoid(x) * (1 - sigmoid(x))
     utec::algebra::Tensor<T, 2> backward(const utec::algebra::Tensor<T, 2>& gradient) override {
         auto result = gradient;
         
@@ -76,8 +78,8 @@ public:
         auto it_output = output_.cbegin();
         
         while (it_grad != result.end()) {
-            // Derivada: sigmoid(x) * (1 - sigmoid(x))
             T sigmoid_val = *it_output;
+            // Derivada: sigmoid(x) * (1 - sigmoid(x))
             *it_grad = (*it_grad) * sigmoid_val * (T{1} - sigmoid_val);
             ++it_grad;
             ++it_output;
@@ -85,6 +87,8 @@ public:
         
         return result;
     }
+    
+    // No tiene parámetros, así que update_params no hace nada (heredado de ILayer)
 };
 
 } // namespace neural_network

@@ -1,10 +1,10 @@
-Start testing: Nov 29 22:59 -05
+Start testing: Nov 29 23:07 -05
 ----------------------------------------------------------
 1/3 Testing: TestTensor
 1/3 Test: TestTensor
 Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_tensor"
 Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
-"TestTensor" start time: Nov 29 22:59 -05
+"TestTensor" start time: Nov 29 23:07 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
@@ -20,10 +20,10 @@ Output:
    ✅ COBERTURA COMPLETA: ~95% de funcionalidad probada  
 ==========================================================
 <end of output>
-Test time =   0.00 sec
+Test time =   0.51 sec
 ----------------------------------------------------------
 Test Passed.
-"TestTensor" end time: Nov 29 22:59 -05
+"TestTensor" end time: Nov 29 23:07 -05
 "TestTensor" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -31,7 +31,7 @@ Test Passed.
 2/3 Test: TestNeuralNetwork
 Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_neural_network"
 Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
-"TestNeuralNetwork" start time: Nov 29 22:59 -05
+"TestNeuralNetwork" start time: Nov 29 23:07 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
@@ -49,10 +49,10 @@ Output:
    ✅ ÉPIC 2 COMPLETAMENTE CUBIERTO - 8 Tests Pasados   
 ==========================================================
 <end of output>
-Test time =   0.42 sec
+Test time =   0.31 sec
 ----------------------------------------------------------
 Test Passed.
-"TestNeuralNetwork" end time: Nov 29 22:59 -05
+"TestNeuralNetwork" end time: Nov 29 23:07 -05
 "TestNeuralNetwork" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -60,7 +60,7 @@ Test Passed.
 3/3 Test: TestApplications
 Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_applications"
 Directory: /Users/cardenas/Desktop/proyecto3/pong_ai/build
-"TestApplications" start time: Nov 29 22:59 -05
+"TestApplications" start time: Nov 29 23:07 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
@@ -68,7 +68,7 @@ Output:
 ==========================================================
 -> Ejecutando prueba: Portabilidad/Serialización (Clasificador)...		[PASSED] ✅
 -> Ejecutando prueba: Robustez ante Ruido (Clasificador)... (Robustez: 4/4)		[PASSED] ✅
--> Ejecutando prueba: Generalización (Predictor)... (Pred: 12.9997, Expected: 13)		[PASSED] ✅
+-> Ejecutando prueba: Generalización (Predictor)... (Pred: 12.9983, Expected: 13)		[PASSED] ✅
 -> Ejecutando prueba: Interpolación (Predictor)...		[PASSED] ✅
 -> Ejecutando prueba: Simulación y Control (Demo)... (2 steps)		[PASSED] ✅
 -> Ejecutando prueba: Condiciones Límite (Demo)...EnvGym: ¡Límite alcanzado! Posición final: 2.40998
@@ -80,11 +80,11 @@ Output:
    📦 Portabilidad ✓ | 🎯 Generalización ✓ | 🎮 Control ✓
 ==========================================================
 <end of output>
-Test time =   0.30 sec
+Test time =   0.59 sec
 ----------------------------------------------------------
 Test Passed.
-"TestApplications" end time: Nov 29 22:59 -05
+"TestApplications" end time: Nov 29 23:07 -05
 "TestApplications" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 29 22:59 -05
+End testing: Nov 29 23:07 -05

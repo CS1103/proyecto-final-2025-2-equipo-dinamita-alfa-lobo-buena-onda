@@ -1,4 +1,4 @@
-TestTensor 15 0.000255525
-TestNeuralNetwork 15 0.0281702
-TestApplications 15 0.0199962
+TestTensor 16 0.0319485
+TestNeuralNetwork 16 0.0191649
+TestApplications 16 0.0369499
 ---

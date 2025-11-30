@@ -5,11 +5,10 @@
 #include <fstream>
 #include <cmath>
 #include <algorithm>
-#include "utec/apps/ControllerDemo.h" // Incluye la clase ControllerDemo (nuestro EnvGym)
+#include "utec/apps/ControllerDemo.h"
 
 using namespace utec::apps;
 
-// Función auxiliar para correr la demostración completa del Epic 3
 void run_epic3_demo() {
     using T = float;
 
@@ -21,15 +20,13 @@ void run_epic3_demo() {
     std::cout << "             FASE 1: ENTRENAMIENTO Y GUARDADO             " << std::endl;
     std::cout << "==========================================================" << std::endl;
 
-    // 1. Crear una instancia para entrenar
     ControllerDemo<T> trainer;
 
-    // 2. Entrenar la política del experto
-    size_t epochs = 5000;
-    T learning_rate = 0.01;
+    // ⭐ HIPERPARÁMETROS CORREGIDOS (aumentados)
+    size_t epochs = 20000;      // Aumentado de 5000 a 20000
+    T learning_rate = 0.01;     // Mantener igual está bien
     trainer.train_expert_policy(epochs, learning_rate);
 
-    // 3. Serializar (Guardar) los pesos entrenados
     const std::string filepath = "policy_weights.bin";
     try {
         trainer.save_weights(filepath);
@@ -47,10 +44,8 @@ void run_epic3_demo() {
     std::cout << "              FASE 2: CARGA Y SIMULACIÓN (EnvGym)         " << std::endl;
     std::cout << "==========================================================" << std::endl;
 
-    // 1. Crear una nueva instancia (el Agente de prueba)
     ControllerDemo<T> agent;
 
-    // 2. Deserializar (Cargar) los pesos entrenados en la nueva instancia
     try {
         agent.load_weights(filepath);
         std::cout << "✅ CARGA EXITOSA: Pesos restaurados en la nueva instancia del agente." << std::endl;
@@ -59,37 +54,38 @@ void run_epic3_demo() {
         return;
     }
 
-    // 3. Iniciar la simulación (EnvGym Loop)
+    // Simulación
     agent.reset();
     int max_steps = 50;
 
     std::cout << "\nIniciando bucle de simulación (Máx. " << max_steps << " pasos):" << std::endl;
 
+    int step_count = 0;
     for (int step = 0; step < max_steps; ++step) {
-        // a) El Entorno proporciona el Estado
-        //    State = [posición, velocidad] (Tensor 1x2)
         auto state = agent.get_state();
-
-        // b) El Agente (NN) predice la acción
         auto output = agent.get_network().predict(state);
 
-        // c) Determinar la Acción (Decisión Binaria: 0 o 1)
-        //    La red usa Sigmoid, el valor > 0.5 se mapea a acción = 1 (Derecha)
         T pred_val = output(0, 0);
-        int action = (pred_val > 0.5) ? 1 : 0; // 1: Derecha, 0: Izquierda
+        int action = (pred_val > 0.5) ? 1 : 0;
 
-        // d) Ejecutar la acción en el EnvGym
         bool still_running = agent.step(action);
+        step_count++;
 
-        // e) Verificar si la simulación terminó
         if (!still_running) {
             break;
         }
     }
+
+    std::cout << "Simulación completada después de " << step_count << " pasos." << std::endl;
+    
+    if (step_count >= max_steps) {
+        std::cout << "✅ CONTROL EXITOSO: El agente mantuvo el equilibrio durante toda la simulación" << std::endl;
+    } else {
+        std::cout << "⚠️  CONTROL PARCIAL: El agente perdió el equilibrio antes del límite" << std::endl;
+    }
 }
 
 int main() {
-    // Es buena práctica envolver todo en un try-catch para manejar errores de archivos
     try {
         run_epic3_demo();
     } catch (const std::exception& e) {
