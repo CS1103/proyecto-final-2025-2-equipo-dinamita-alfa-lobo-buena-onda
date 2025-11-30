@@ -26,17 +26,15 @@ private:
     NeuralNetwork<T> nn_;
 
     // --- ESTADO INTERNO DEL SIMULADOR (EnvGym) ---
-    // Estas variables definen el estado actual del "carrito" en el simulador.
     T position_ = 0.0;
     T velocity_ = 0.0;
 
     // Constantes de la simulación
-    static constexpr T MAX_POS = 2.0;    // Límite de posición
+    static constexpr T MAX_POS = 2.0;
     static constexpr T MIN_POS = -2.0;
-    static constexpr T FRICTION = 0.95;  // Factor de fricción
-    static constexpr T FORCE_MAGNITUDE = 0.1; // Magnitud de la fuerza aplicada
+    static constexpr T FRICTION = 0.95;
+    static constexpr T FORCE_MAGNITUDE = 0.1;
 
-    // Funciones de inicialización (del código anterior)
     void init_weights_xavier(Tensor<T, 2>& t) {
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -55,15 +53,16 @@ private:
 
     template <typename InitWFun, typename InitBFun>
     void init_network(InitWFun init_w_fun, InitBFun init_b_fun) {
-        // Topología 2-8-1
+        // Arquitectura mejorada: 2 -> 16 -> 1
         nn_.add_layer(std::make_unique<Dense<T>>(
-            2, 8, init_w_fun, init_b_fun
+            2, 16, init_w_fun, init_b_fun  // Aumentado de 8 a 16
         ));
         nn_.add_layer(std::make_unique<ReLU<T>>());
+        
         nn_.add_layer(std::make_unique<Dense<T>>(
-            8, 1, init_w_fun, init_b_fun
+            16, 1, init_w_fun, init_b_fun
         ));
-        nn_.add_layer(std::make_unique<Sigmoid<T>>());
+        nn_.add_layer(std::make_unique<Sigmoid<T>>());  // Sigmoid para clasificación binaria
     }
 
 public:
@@ -75,122 +74,172 @@ public:
     }
 
     // -----------------------------------------------------------------
-    // 1. MÉTODOS DE SERIALIZACIÓN (Portabilidad - Requisito Epic 3)
+    // MÉTODOS DE SERIALIZACIÓN
     // -----------------------------------------------------------------
 
-    /**
-     * @brief Guarda los pesos entrenados de la red en un archivo.
-     * Este método asume que NeuralNetwork<T> implementa save_state.
-     */
     void save_weights(const std::string& filepath) const {
-        // Debes implementar nn_.save_state(filepath) en neural_network.h/cpp
         nn_.save_state(filepath);
     }
 
-    /**
-     * @brief Carga los pesos de un archivo para restaurar una red previamente entrenada.
-     * Este método asume que NeuralNetwork<T> implementa load_state.
-     */
     void load_weights(const std::string& filepath) {
-        // Debes implementar nn_.load_state(filepath) en neural_network.h/cpp
         nn_.load_state(filepath);
     }
 
     // -----------------------------------------------------------------
-    // 2. MÉTODOS DEL ENTORNO DE PRUEBA (EnvGym - Requisito Epic 3)
+    // MÉTODOS DEL ENTORNO (EnvGym)
     // -----------------------------------------------------------------
 
-    /**
-     * @brief Reinicia el entorno a un estado inicial (el EnvGym).
-     */
     void reset() {
-        position_ = 0.0; // Posición inicial en el centro
-        velocity_ = 0.0; // Velocidad inicial cero
-        std::cout << "EnvGym: Reiniciado. Posicion: " << position_ << ", Velocidad: " << velocity_ << std::endl;
+        position_ = 0.0;
+        velocity_ = 0.0;
+        std::cout << "EnvGym: Reiniciado. Posicion: " << position_ 
+                  << ", Velocidad: " << velocity_ << std::endl;
     }
 
-    /**
-     * @brief Devuelve el estado actual del simulador (Input para la NN).
-     * @return Tensor<T, 2> con [posición, velocidad].
-     */
     Tensor<T, 2> get_state() const {
-        Tensor<T, 2> state(1, 2); // Un tensor (1 fila, 2 columnas)
+        Tensor<T, 2> state(1, 2);
         state(0, 0) = position_;
         state(0, 1) = velocity_;
         return state;
     }
 
-    /**
-     * @brief Ejecuta la acción del agente y avanza el simulador un paso (step).
-     * @param action La acción decidida por la red (0: Izquierda, 1: Derecha).
-     * @return true si la simulación continúa, false si se alcanzó el límite.
-     */
     bool step(int action) {
-        // 1. Calcular la fuerza basada en la acción de la NN
+        // Calcular fuerza según acción
         T force = (action == 1) ? FORCE_MAGNITUDE : -FORCE_MAGNITUDE;
 
-        // 2. Actualizar la velocidad (fuerza y fricción)
+        // Actualizar física
         velocity_ = (velocity_ + force) * FRICTION;
-
-        // 3. Actualizar la posición
         position_ += velocity_;
 
-        // 4. Aplicar límites y verificar fin de simulación
+        // Verificar límites
         if (position_ >= MAX_POS || position_ <= MIN_POS) {
-             // El sistema se salió de los límites (falla el control)
-             std::cout << "EnvGym: ¡Límite alcanzado! Simulación terminada." << std::endl;
-             return false;
+            std::cout << "EnvGym: ¡Límite alcanzado! Posición final: " << position_ << std::endl;
+            return false;
         }
 
         return true;
     }
 
-    /**
-     * @brief Método para obtener la referencia a la red neuronal (útil para predict/forward).
-     */
     NeuralNetwork<T>& get_network() {
         return nn_;
     }
 
     // -----------------------------------------------------------------
-    // 3. MÉTODO DE ENTRENAMIENTO (Lógica existente, renombrado)
+    // ENTRENAMIENTO MEJORADO
     // -----------------------------------------------------------------
 
     void train_expert_policy(size_t epochs, T learning_rate) {
         std::cout << "\n--- Ejecutando ControllerDemo: Entrenamiento de Política de Control ---" << std::endl;
 
-        // 1. Dataset de Experto (Clonación de Comportamiento)
-        Tensor<T, 2> X(8, 2);
-        X = {-2.0, 0.5, -1.5, 0.0, -0.1, -0.2, 0.0, 0.0, 0.1, 0.2, 1.5, -0.5, 2.0, 0.5, -0.5, 1.0};
+        // Dataset mejorado con más ejemplos y mejor balanceo
+        Tensor<T, 2> X(12, 2);
+        X = {
+            // Casos críticos: muy a la izquierda -> ir a derecha (1)
+            -2.0,  0.5,   // Borde izquierdo, moviéndose derecha -> mantener derecha
+            -1.8, -0.2,   // Cerca del borde izq, moviéndose izq -> URGENTE derecha
+            -1.5,  0.0,   // Lejos izquierda, parado -> ir derecha
+            -1.0, -0.3,   // Izquierda, moviéndose más izq -> derecha
+            
+            // Zona central: depende de velocidad
+            -0.5,  0.5,   // Centro-izq, moviéndose derecha -> dejar ir (0)
+            -0.2, -0.1,   // Centro-izq, moviéndose izq lento -> compensar derecha (1)
+             0.0,  0.0,   // Centro perfecto -> mantener (cualquiera, usemos 0)
+             0.2,  0.1,   // Centro-der, moviéndose der lento -> compensar izquierda (0)
+             
+            // Casos críticos: muy a la derecha -> ir a izquierda (0)
+             1.0,  0.3,   // Derecha, moviéndose más der -> izquierda
+             1.5,  0.0,   // Lejos derecha, parado -> ir izquierda
+             1.8,  0.2,   // Cerca del borde der, moviéndose der -> URGENTE izquierda
+             2.0, -0.5    // Borde derecho, moviéndose izq -> mantener izquierda
+        };
 
-        // Acciones deseadas (Y)
-        Tensor<T, 2> Y(8, 1);
-        Y = {1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
+        // Acciones correctas (0 = izquierda, 1 = derecha)
+        Tensor<T, 2> Y(12, 1);
+        Y = {
+            1.0,  // -2.0,  0.5  -> derecha
+            1.0,  // -1.8, -0.2  -> derecha
+            1.0,  // -1.5,  0.0  -> derecha
+            1.0,  // -1.0, -0.3  -> derecha
+            0.0,  // -0.5,  0.5  -> izquierda
+            1.0,  // -0.2, -0.1  -> derecha
+            0.0,  //  0.0,  0.0  -> izquierda
+            0.0,  //  0.2,  0.1  -> izquierda
+            0.0,  //  1.0,  0.3  -> izquierda
+            0.0,  //  1.5,  0.0  -> izquierda
+            0.0,  //  1.8,  0.2  -> izquierda
+            0.0   //  2.0, -0.5  -> izquierda
+        };
 
-        std::cout << "Entrenando la política de control..." << std::endl;
+        std::cout << "Configuración:" << std::endl;
+        std::cout << "  - Épocas: " << epochs << std::endl;
+        std::cout << "  - Learning Rate: " << learning_rate << std::endl;
+        std::cout << "  - Muestras de entrenamiento: 12" << std::endl;
+        std::cout << "  - Optimizador: Adam" << std::endl;
+        std::cout << "  - Loss: Binary Cross-Entropy" << std::endl;
+        std::cout << "\nEntrenando la política de control..." << std::endl;
 
-        // Entrenamiento
-        nn_.template train<utec::neural_network::BinaryCrossEntropyLoss, utec::neural_network::Adam>(X, Y, epochs, 4, learning_rate);
+        // Entrenamiento con hiperparámetros mejorados
+        nn_.template train<utec::neural_network::BinaryCrossEntropyLoss, 
+                          utec::neural_network::Adam>(
+            X, Y, epochs, 4, learning_rate
+        );
 
-        // 2. Validación de resultados (Generalización)
+        // Validación
         auto predictions = nn_.predict(X);
 
-        std::cout << "\nResultados del Control (Acción Predicha > 0.5 = Derecha (1)):" << std::endl;
-        std::cout << "Posicion\tVelocidad\tAcción Esperada\tAcción Predicha" << std::endl;
-        for(size_t i = 0; i < 8; ++i) {
-            double pred_val = predictions(i, 0);
-            int final_action = (pred_val > 0.5) ? 1 : 0;
+        std::cout << "\n=== Resultados del Control (threshold = 0.5) ===" << std::endl;
+        std::cout << "Pos\tVel\tEsperado\tPredicción\tAcción\tCorrect" << std::endl;
+        std::cout << "---\t---\t--------\t----------\t------\t-------" << std::endl;
+        
+        int correct = 0;
+        for(size_t i = 0; i < 12; ++i) {
+            T pred_val = predictions(i, 0);
+            int predicted_action = (pred_val > 0.5) ? 1 : 0;
+            int expected_action = static_cast<int>(Y(i, 0) + 0.5);
+            bool is_correct = (predicted_action == expected_action);
+            if (is_correct) correct++;
 
-            std::cout << X(i, 0) << "\t\t" << X(i, 1) << "\t\t"
-                      << Y(i, 0) << "\t\t" << final_action << std::endl;
+            std::cout << X(i, 0) << "\t" << X(i, 1) << "\t"
+                      << expected_action << "\t\t" << pred_val << "\t"
+                      << predicted_action << "\t"
+                      << (is_correct ? "✓" : "✗") << std::endl;
+        }
+        
+        T accuracy = (static_cast<T>(correct) / 12.0) * 100.0;
+        std::cout << "\nAccuracy en entrenamiento: " << correct << "/12 (" 
+                  << accuracy << "%)" << std::endl;
+
+        // Prueba de generalización
+        Tensor<T, 2> X_test(3, 2);
+        X_test = {
+            -1.2, -0.15,  // Izquierda, moviéndose más izq -> debería ir derecha (1)
+             0.5,  0.3,   // Derecha, moviéndose más der -> debería ir izquierda (0)
+            -0.8,  0.1    // Izquierda, moviéndose derecha -> debería mantener/ir izq (0)
+        };
+        
+        auto test_pred = nn_.predict(X_test);
+        
+        std::cout << "\n=== Pruebas de Generalización ===" << std::endl;
+        std::cout << "Pos\tVel\tPredicción\tAcción\tEsperado" << std::endl;
+        std::cout << "---\t---\t----------\t------\t--------" << std::endl;
+        
+        std::array<int, 3> expected_test = {1, 0, 0};
+        for(size_t i = 0; i < 3; ++i) {
+            T pred_val = test_pred(i, 0);
+            int action = (pred_val > 0.5) ? 1 : 0;
+            std::cout << X_test(i, 0) << "\t" << X_test(i, 1) << "\t"
+                      << pred_val << "\t" << action << "\t"
+                      << expected_test[i] 
+                      << (action == expected_test[i] ? " ✓" : " ✗") << std::endl;
         }
 
-        Tensor<T, 2> X_new(1, 2);
-        X_new = {-1.0, -0.1};
-        auto test_pred = nn_.predict(X_new);
-        int test_action = (test_pred(0, 0) > 0.5) ? 1 : 0;
-        
-        std::cout << "\nPrueba Generalización (Pos: -1.0, Vel: -0.1): Acción = " << test_action << std::endl;
+        if (accuracy >= 90.0) {
+            std::cout << "\n✅ ENTRENAMIENTO EXITOSO: Política lista para control" << std::endl;
+        } else if (accuracy >= 75.0) {
+            std::cout << "\n⚠️  ENTRENAMIENTO ACEPTABLE: Considerar más épocas" << std::endl;
+        } else {
+            std::cout << "\n❌ ENTRENAMIENTO INSUFICIENTE: Ajustar hiperparámetros" << std::endl;
+        }
     }
 };
 

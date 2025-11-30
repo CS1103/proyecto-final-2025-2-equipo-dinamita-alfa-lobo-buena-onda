@@ -20,25 +20,22 @@ public:
             const utec::algebra::Tensor<T, 2>& y_true) 
         : y_predicted_(y_prediction), y_true_(y_true) {
         
-        // Verificar que las dimensiones coincidan
         if (y_predicted_.shape() != y_true_.shape()) {
             throw std::invalid_argument("Predictions and true values must have the same shape");
         }
     }
     
-    // Calcula el MSE
     T loss() const override {
-        auto diff = y_predicted_ - y_true_;  // (y_pred - y_true)
+        auto diff = y_predicted_ - y_true_;
         
         T sum = T{0};
         for (const auto& val : diff) {
-            sum += val * val;  // Suma de cuadrados
+            sum += val * val;
         }
         
-        return sum / static_cast<T>(y_predicted_.size());  // Promedio
+        return sum / static_cast<T>(y_predicted_.size());
     }
     
-    // Gradiente: dL/dy_pred = (2/n) * (y_pred - y_true)
     utec::algebra::Tensor<T, 2> loss_gradient() const override {
         auto gradient = y_predicted_ - y_true_;
         T factor = T{2} / static_cast<T>(y_predicted_.size());
@@ -54,20 +51,21 @@ class BinaryCrossEntropyLoss final : public ILoss<T, 2> {
 private:
     utec::algebra::Tensor<T, 2> y_predicted_;
     utec::algebra::Tensor<T, 2> y_true_;
-    static constexpr T epsilon = T{1e-15};  // Para evitar log(0)
+    
+    // ⭐ CAMBIO CRÍTICO: Epsilon aumentado de 1e-15 a 1e-7
+    // 1e-15 es demasiado pequeño y puede causar problemas numéricos
+    static constexpr T epsilon = T{1e-7};
     
 public:
     BinaryCrossEntropyLoss(const utec::algebra::Tensor<T, 2>& y_prediction,
             const utec::algebra::Tensor<T, 2>& y_true) 
         : y_predicted_(y_prediction), y_true_(y_true) {
         
-        // Verificar que las dimensiones coincidan
         if (y_predicted_.shape() != y_true_.shape()) {
             throw std::invalid_argument("Predictions and true values must have the same shape");
         }
     }
     
-    // Calcula el BCE
     T loss() const override {
         T sum = T{0};
         
@@ -75,7 +73,8 @@ public:
         auto it_true = y_true_.cbegin();
         
         while (it_pred != y_predicted_.cend()) {
-            T p = std::max(epsilon, std::min(T{1} - epsilon, *it_pred));  // Clip para estabilidad
+            // Clip para estabilidad numérica
+            T p = std::max(epsilon, std::min(T{1} - epsilon, *it_pred));
             T y = *it_true;
             
             // BCE: -[y*log(p) + (1-y)*log(1-p)]
@@ -85,10 +84,13 @@ public:
             ++it_true;
         }
         
-        return sum / static_cast<T>(y_predicted_.size());  // Promedio
+        return sum / static_cast<T>(y_predicted_.size());
     }
     
-    // Gradiente: dL/dp = (1/n) * [(p - y) / (p * (1 - p))]
+    // ⭐ GRADIENTE CORREGIDO
+    // Fórmula correcta: dL/dp = -(y/p - (1-y)/(1-p)) / n
+    // Simplificado: dL/dp = (p - y) / (p * (1-p) * n)
+    // Pero la forma más estable es: dL/dp = -(y/p - (1-y)/(1-p)) / n
     utec::algebra::Tensor<T, 2> loss_gradient() const override {
         auto gradient = y_predicted_;
         
@@ -96,13 +98,15 @@ public:
         auto it_pred = y_predicted_.cbegin();
         auto it_true = y_true_.cbegin();
         
+        T n = static_cast<T>(y_predicted_.size());
+        
         while (it_grad != gradient.end()) {
-            T p = std::max(epsilon, std::min(T{1} - epsilon, *it_pred));  // Clip
+            // Clip para evitar división por cero
+            T p = std::max(epsilon, std::min(T{1} - epsilon, *it_pred));
             T y = *it_true;
             
-            // Gradiente: (p - y) / (p * (1 - p))
-            *it_grad = (p - y) / (p * (T{1} - p));
-            *it_grad /= static_cast<T>(y_predicted_.size());  // Dividir por n
+            // ⭐ GRADIENTE CORRECTO: -(y/p - (1-y)/(1-p)) / n
+            *it_grad = -(y / p - (T{1} - y) / (T{1} - p)) / n;
             
             ++it_grad;
             ++it_pred;
