@@ -13,6 +13,19 @@
 #include <utec/nn/nn_loss.h>
 #include <utec/nn/nn_optimizer.h>
 
+/**
+ * =================================================================
+ * NOTACIÓN DE COMPLEJIDAD ALGORÍTMICA (O)
+ * =================================================================
+ * W_layer: Número de parámetros (pesos o sesgos) en una capa Dense.
+ * B_layer: Número de bias en una capa Dense.
+ * W_total: Número total de parámetros (pesos y bias) en toda la red neuronal.
+ * D: Tamaño total del dataset de entrenamiento (fijo en 5 para el demo).
+ * D_samples: Número de muestras en el batch o en la predicción.
+ * Epochs: Número de épocas de entrenamiento.
+ * =================================================================
+ */
+
 namespace utec {
 namespace apps {
 
@@ -63,7 +76,7 @@ private:
 
 public:
     SequencePredictor() {
-        // Complejidad: O(W_total)
+        // Complejidad: O(W_total)
         init_network(
             [this](Tensor<T, 2>& t){ init_weights_xavier(t); },
             [this](Tensor<T, 2>& t){ init_bias_zero(t); }
@@ -85,7 +98,7 @@ public:
     }
 
     // --- Algoritmo de Predicción (Forward Propagation) ---
-    // Complejidad: O(D * W_total), donde D es el número de muestras.
+    // Complejidad: O(D_samples * W_total), donde D_samples es el número de muestras.
     utec::algebra::Tensor<T, 2> predict(const utec::algebra::Tensor<T, 2>& X) {
         return nn_.predict(X);
     }
@@ -118,9 +131,9 @@ public:
         Y = {3.0, 5.0, 7.0, 9.0, 11.0};
 
         // HIPERPARÁMETROS OPTIMIZADOS
-        size_t epochs = 15000;        
+        size_t epochs = 15000;        
         T learning_rate = 0.01;       
-        size_t batch_size = 5;        
+        size_t batch_size = 5;        
 
         std::cout << "Configuración del entrenamiento:" << std::endl;
         // ... (impresión de configuración omitida) ...
@@ -152,7 +165,7 @@ public:
         std::cout << "\nError Promedio en Entrenamiento: " << mean_error << std::endl;
 
         // --- Algoritmo de Predicción (Prueba de Generalización) ---
-        // Complejidad: O(D_test * W_total) = O(2 * W_total).
+        // Complejidad: O(D_samples * W_total) = O(2 * W_total).
         // Prueba de generalización con valores no vistos
         Tensor<T, 2> X_test(2, 1);
         X_test = {6.0, 10.0};
@@ -162,12 +175,12 @@ public:
         // ... (impresión de encabezado omitida) ...
         
         // --- Algoritmo de Cálculo de Error (Validación de Generalización) ---
-        // Complejidad: O(D_test) = O(2) = O(1)
-        T expected_6 = 13.0;  
+        // Complejidad: O(D_samples) = O(2) = O(1)
+        T expected_6 = 13.0;  
         T error_6 = std::abs(expected_6 - test_predictions(0, 0));
         // ... (impresión de resultados omitida) ...
         
-        T expected_10 = 21.0;  
+        T expected_10 = 21.0;  
         T error_10 = std::abs(expected_10 - test_predictions(1, 0));
         // ... (impresión de resultados omitida) ...
         
