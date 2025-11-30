@@ -81,7 +81,7 @@ cmake --version     # Debe ser 3.16+
 
 ```bash
 # 1. Clonar repositorio
-git clone https://github.com/TU_USUARIO/TU_REPO.git
+git clone https://github.com/CS1103/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda.git
 cd pong_ai
 
 # 2. Configurar y compilar
@@ -106,9 +106,6 @@ ctest
 ---
 
 ### 1. Investigación teórica
-
-* **Objetivo**: Explorar fundamentos y arquitecturas de redes neuronales.
-* **Contenido de ejemplo**:
 
 
 * 1. Historia y evolución de las NNs.
@@ -175,7 +172,9 @@ ctest
 
 ---
 
-## Estructura del proyecto
+## 2. Diseño e implementación
+
+ - Estructura del proyecto
 
 ```
 pong_ai/
@@ -236,7 +235,7 @@ Implementación de `Tensor<T, Rank>` que soporta:
 
 ---
 
-## 2. Diseño e implementación
+
 
 ### 2.1 Arquitectura de la solución
 
@@ -457,11 +456,11 @@ cd build && rm -rf * && cmake .. && make -j4 && ctest --verbose && ./pattern_cla
 
 | Tarea | Miembro | Rol | Horas |
 |-------|---------|-----|-------|
-| Epic 1: Tensor | Fredy Cardenas Aliaga | Implementación completa | 20h |
-| Epic 2: NN | Fredy Cardenas Aliaga | Forward/Backward propagation | 25h |
+| Epic 1: Tensor | Elias Alonso Usaqui Cabezas | Implementación completa | 23h |
+| Epic 2: NN | Elias Alonso Usaqui Cabezas | Forward/Backward propagation | 26h |
 | Epic 3: Apps | Fredy Cardenas Aliaga | Aplicaciones y serialización | 20h |
 | Testing | Fredy Cardenas Aliaga | 22 tests automatizados | 15h |
-| Documentación | Fredy Cardenas Aliaga | README, video, presentación | 10h |
+| Documentación | Elias Alonso Usaqui Cabezas | README, video, presentación | 10h |
 | Integración | Fredy Cardenas Aliaga | Code review y merge | 5h |
 
 **Herramientas de colaboración:**
