@@ -13,6 +13,19 @@
 #include <utec/nn/nn_loss.h>
 #include <utec/nn/nn_optimizer.h>
 
+/**
+ * =================================================================
+ * NOTACIÓN DE COMPLEJIDAD ALGORÍTMICA (O)
+ * =================================================================
+ * W_layer: Número de parámetros (pesos o sesgos) en una capa Dense.
+ * B_layer: Número de bias en una capa Dense.
+ * W_total: Número total de parámetros (pesos y bias) en toda la red neuronal.
+ * D: Tamaño total del dataset de entrenamiento (fijo en 4 para el demo XOR).
+ * D_samples: Número de muestras en el batch o en la predicción (ej. D=4).
+ * Epochs: Número de épocas de entrenamiento.
+ * =================================================================
+ */
+
 namespace utec {
 namespace apps {
 
@@ -67,7 +80,7 @@ private:
 
 public:
     PatternClassifier() {
-        // Complejidad: O(W_total)
+        // Complejidad: O(W_total)
         init_network(
             [this](Tensor<T, 2>& t){ init_weights_xavier(t); },
             [this](Tensor<T, 2>& t){ init_bias_zero(t); }
@@ -89,7 +102,7 @@ public:
     }
 
     // --- Algoritmo de Predicción (Forward Propagation) ---
-    // Complejidad: O(D * W_total), donde D es el número de muestras.
+    // Complejidad: O(D_samples * W_total), donde D_samples es el número de muestras.
     utec::algebra::Tensor<T, 2> predict(const utec::algebra::Tensor<T, 2>& X) {
         return nn_.predict(X);
     }
@@ -128,12 +141,12 @@ public:
         Y = {0.0, 1.0, 1.0, 0.0};
 
         // HIPERPARÁMETROS OPTIMIZADOS PARA XOR
-        size_t epochs = 20000;      
+        size_t epochs = 20000;      
         T learning_rate = 0.05;     
-        size_t batch_size = 4;      
+        size_t batch_size = 4;      
 
         std::cout << "Configuración del entrenamiento:" << std::endl;
-        // ... (impresión de configuración omitida) ...
+        // ... (impresión de configuración omitida) ...
         std::cout << "\nEntrenando con Adam..." << std::endl;
 
         // --- Algoritmo de Entrenamiento (Adam + Binary Cross-Entropy) ---
@@ -148,7 +161,7 @@ public:
         auto predictions = nn_.predict(X);
 
         std::cout << "\n=== Resultados de Validación (Threshold = 0.5) ===" << std::endl;
-        // ... (impresión de encabezado omitida) ...
+        // ... (impresión de encabezado omitida) ...
         
         // --- Algoritmo de Validación de Precisión ---
         // Complejidad: O(D) = O(4) = O(1)
@@ -161,32 +174,32 @@ public:
             
             if (is_correct) correct++;
 
-            // ... (impresión de resultados omitida) ...
+            // ... (impresión de resultados omitida) ...
         }
         
         T accuracy = (static_cast<T>(correct) / 4.0) * 100.0;
-        // ... (impresión de resumen omitida) ...
+        // ... (impresión de resumen omitida) ...
 
         // --- Algoritmo de Predicción (Prueba de Robustez) ---
-        // Complejidad: O(D_noisy * W_total) = O(4 * W_total).
+        // Complejidad: O(D_samples * W_total) = O(4 * W_total).
         std::cout << "\n=== Prueba de Robustez (Inputs con Ruido) ===" << std::endl;
         Tensor<T, 2> X_noisy(4, 2);
         X_noisy = {
             0.05, 0.02,   
             0.02, 0.95,   
             0.98, 0.03,   
-            0.97, 0.96    
+            0.97, 0.96    
         };
         
         auto noisy_predictions = nn_.predict(X_noisy);
         
-        // ... (impresión de encabezado omitida) ...
+        // ... (impresión de encabezado omitida) ...
         
         std::array<int, 4> expected_noisy = {0, 1, 1, 0};
         int robust_correct = 0;
         
         // --- Algoritmo de Validación de Robustez ---
-        // Complejidad: O(D_noisy) = O(4) = O(1)
+        // Complejidad: O(D_samples) = O(4) = O(1)
         for(size_t i = 0; i < 4; ++i) {
             T pred_val = noisy_predictions(i, 0);
             int predicted_class = (pred_val > 0.5) ? 1 : 0;
@@ -194,10 +207,10 @@ public:
             
             if (is_correct) robust_correct++;
             
-            // ... (impresión de resultados omitida) ...
+            // ... (impresión de resultados omitida) ...
         }
         
-        // ... (impresión de robustez y evaluación final omitida) ...
+        // ... (impresión de robustez y evaluación final omitida) ...
     }
 };
 
