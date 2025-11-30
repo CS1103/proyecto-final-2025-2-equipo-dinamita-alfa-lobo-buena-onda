@@ -13,9 +13,6 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 * [2. Requisitos e instalación](#2-requisitos-e-instalacion)
     * [2.1. Requisitos del sistema](#21-requisitos-del-sistema)
     * [2.2. Instalación de herramientas](#22-instalacion-de-herramientas)
-        * [macOS:](#macos)
-        * [Ubuntu/Debian:](#ubuntudebian)
-        * [Windows:](#windows)
     * [2.3. Instalación del proyecto](#23-instalacion-del-proyecto)
     * [2.4. Solución de problemas](#24-solucion-de-problemas)
 * [3. Investigación teórica](#3-investigacion-teorica)
@@ -23,13 +20,16 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
     * [4.1. Estructura del proyecto](#41-estructura-del-proyecto)
     * [4.2. Arquitectura de la solución](#42-arquitectura-de-la-solucion)
 * [5. Documentación de codigo](#5-documentacion-de-codigo)
-    * [Clase `Tensor<T, N>`](#clase-tensort-n)
-    * [Clase `NeuralNetwork<T>`](#clase-neuralnetworkt)
-    * [Funciones de Activación (`NN_ACTIVATION.H`)](#funciones-de-activacion-nn_activationh)
-    * [Capa Densa (`Dense<T>`)](#capa-densa-denst)
-    * [Interfaces Fundamentales (`NN_INTERFACES.H`)](#interfaces-fundamentales-nn_interfacesh)
-    * [Funciones de Pérdida (`NN_LOSS.H`)](#funciones-de-perdida-nn_lossh)
-    * [Optimizadores (`NN_OPTIMIZER.H`)](#optimizadores-nn_optimizerh)
+    * [Tensor](#tensor)
+    * [neuralNetwork](#neuralnetwork)
+    * [nnACTIVATION](#nnactivation)
+    * [nnDense](#nndense)
+    * [nnInterfaces](#nninterfaces)
+    * [nnLoss](#nnloss)
+    * [nnOptimizer](#nnoptimizer)
+    * [ControllerDemo](#controllerdemo)
+    * [PatternClassifier](#patternclassifier)
+    * [SequencePredictor](#sequencepredictor)
 * [6. Manual de uso](#6-manual-de-uso)
 * [7. Ejecución](#7-ejecución)
 * [8. Trabajo en equipo](#8-trabajo-en-equipo)
@@ -255,9 +255,12 @@ pong_ai/
 - **Genérico**: Templates para reutilización (`Tensor<float, 2>`, `Tensor<double, 3>`)
 - **Funcional**: Lambdas para inicialización de pesos
 
+---
+
 ## 5. Documentación de codigo
 
-### Clase `Tensor<T, N>`
+### Tensor
+---
 
 El archivo `Tensor.h` define la plantilla de clase `utec::algebra::Tensor<T, N]`, la estructura de datos fundamental para el manejo de arrays multi-dimensionales en la librería de álgebra. Proporciona soporte para operaciones aritméticas elemento a elemento, manipulación de formas y funcionalidades avanzadas como **Broadcasting** y **Multiplicación Matricial por Lotes (BMM)**.
 
@@ -320,7 +323,8 @@ Estas operaciones soportan **Broadcasting** cuando las formas de los operandos s
 
 ---
 
-### Clase `NeuralNetwork<T>`
+### neuralNetwork
+---
 
 El archivo `NeuralNetwork.h` define la plantilla de clase `utec::neural_network::NeuralNetwork<T>`, que actúa como el **contenedor principal** para la red neuronal. Su función es ensamblar las capas, coordinar los pasos de la propagación hacia adelante y hacia atrás, y gestionar el ciclo de vida completo del entrenamiento y la serialización (guardado/carga).
 
@@ -374,7 +378,8 @@ Estos métodos asumen que solo las capas `Dense` contienen parámetros que deben
 
 ---
 
-### Funciones de Activación (`NN_ACTIVATION.H`)
+### nnActivation
+---
 
 El archivo `NN_ACTIVATION.H` define implementaciones concretas de las funciones de activación más comunes (`ReLU` y `Sigmoid`) como clases que heredan de `ILayer<T>`. Estas capas se utilizan para introducir **no linealidad** en la red neuronal.
 
@@ -414,7 +419,7 @@ Implementa la función de activación Sigmoide: $f(x) = 1 / (1 + e^{-x})$.
 
 ---
 
-### 📖 Capa Densa (`Dense<T>`)
+### nnDense
 
 El archivo `NN_DENSE.H` define la clase `utec::neural_network::Dense<T>`, que implementa una capa completamente conectada (Fully Connected Layer) en una red neuronal. Esta capa realiza una transformación lineal sobre la entrada: $\mathbf{Y} = \mathbf{X} \cdot \mathbf{W} + \mathbf{b}$.
 
@@ -459,7 +464,8 @@ Las complejidades se centran en el costo de la multiplicación matricial, que es
 
 ---
 
-### Interfaces Fundamentales (`NN_INTERFACES.H`)
+### nnIntefaces
+---
 
 El archivo `NN_INTERFACES.H` define las interfaces puramente virtuales que establecen el contrato y la estructura requerida para los principales componentes de la red neuronal: **Capas** (`ILayer`), **Funciones de Pérdida** (`ILoss`) y **Optimizadores** (`IOptimizer`).
 
@@ -512,7 +518,8 @@ Define el contrato para los algoritmos de optimización encargados de actualizar
 
 ---
 
-### Funciones de Pérdida (`NN_LOSS.H`)
+### nnLoss
+---
 
 El archivo `NN_LOSS.H` define las implementaciones concretas de las funciones de pérdida más comunes, heredando de la interfaz `ILoss<T, 2>`. Estas clases son responsables de calcular el error entre las predicciones ($\mathbf{Y}_{\text{pred}}$) y los valores verdaderos ($\mathbf{Y}_{\text{true}}$), y generar el gradiente inicial para la retropropagación.
 
@@ -552,7 +559,8 @@ Implementa la **Pérdida por Entropía Cruzada Binaria (Binary Cross Entropy)**:
 
 ---
 
-### Optimizadores (`NN_OPTIMIZER.H`)
+### nnOptimizer
+---
 
 El archivo `NN_OPTIMIZER.H` define las implementaciones de los algoritmos de optimización **SGD** y **Adam**, que heredan de la interfaz `IOptimizer<T>`. Estas clases gestionan la lógica para actualizar los parámetros de la red utilizando los gradientes calculados.
 
@@ -588,14 +596,213 @@ Implementa el optimizador **Adam (Adaptive Moment Estimation)**, que utiliza pro
 | `update(...)` | **Algoritmo de Actualización Adam.** | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | El costo es lineal con $\mathbf{P}_{\text{LAYER}}$. La gestión de momentos (`std::map`) es $\mathbf{O}(\log(\mathbf{L}_{\text{DENSE}}))$ para acceso. |
 | `step()` | **Paso Global.** Incrementa el contador de pasos global $\mathbf{t}$. | $\mathbf{O}(1)$ | Es esencial para el cálculo de la corrección de *bias* en `Adam`. |
 
+---
 
+### ControllerDEmo
+---
 
+El archivo `CONTROLLER_DEMO.H` define la clase `ControllerDemo<T>`, que encapsula una **Red Neuronal** y un **Simulador de Entorno Físico Simplificado** (análogo a un entorno de OpenAI Gym). Esta clase entrena la red para aprender una política de control que mantiene una partícula dentro de ciertos límites.
 
-1. **PatternClassifier**: Resuelve XOR (problema no linealmente separable)
-2. **SequencePredictor**: Aprende patrones aritméticos (y = 2x + 1)
-3. **ControllerDemo**: Política de control basada en estado (posición, velocidad)
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| $\mathbf{W}_{\text{layer}}$ | Número de parámetros (pesos o sesgos) en una capa `Dense`. |
+| $\mathbf{B}_{\text{layer}}$ | Número de bias en una capa `Dense`. |
+| $\mathbf{W}_{\text{total}}$ | Número total de parámetros (pesos y bias) en toda la red neuronal. |
+| $\mathbf{L}$ | Número de capas en la red. |
+| $\mathbf{D}$ | Tamaño total del dataset de entrenamiento (fijo en 12 para el demo). |
+| $\mathbf{Epochs}$ | Número de épocas de entrenamiento. |
+| $\mathbf{Batch\_Size}$ | Tamaño del lote de entrenamiento (fijo en 4 para el demo). |
+| $\mathbf{C}_{\text{fp\_bp}}$ | Costo de una pasada *Forward* y *Backpropagation* para una muestra: $\mathbf{O}(\mathbf{W}_{\text{total}})$. |
 
 ---
+
+#### 💻 Clase `template <typename T> class ControllerDemo`
+
+Esta clase gestiona la **red neuronal** (`nn_`) y el **estado del entorno** (`position_`, `velocity_`).
+
+### 1. Arquitectura de la Red y Estado Interno
+
+#### Arquitectura
+
+La red neuronal utilizada es una **MLP (Perceptrón Multicapa)** con la siguiente estructura:
+
+$$\text{Entrada} (2) \rightarrow \text{Densa} (16) \rightarrow \text{ReLU} \rightarrow \text{Densa} (1) \rightarrow \text{Sigmoid} \rightarrow \text{Salida} (1)$$
+
+* **Entrada (2):** `[position, velocity]`
+* **Salida (1):** Probabilidad de aplicar la acción '1' (Empujar Positivo).
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `init_network(...)` | Construye la arquitectura de la red con inicializadores pasados por *lambda*. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+| `init_weights_xavier(...)` | Inicializa los pesos de una matriz usando el método **Xavier/Glorot**. | $\mathbf{O}(\mathbf{W}_{\text{layer}})$ |
+| `init_bias_zero(...)` | Inicializa los *bias* de una matriz a cero. | $\mathbf{O}(\mathbf{B}_{\text{layer}})$ |
+| `ControllerDemo()` | Constructor. Inicializa la red utilizando Xavier para pesos y cero para *bias*. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+
+---
+
+#### 2. Métodos del Entorno (Simulación EnvGym)
+
+Estos métodos gestionan la simulación simplificada de un objeto en movimiento sujeto a fuerza y fricción.
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `reset()` | Reinicia la posición y velocidad del simulador a 0.0. | $\mathbf{O}(1)$ | N/A |
+| `get_state() const` | Devuelve el estado actual del entorno: `[position, velocity]` como un $\mathbf{Tensor}<T, 2>(1, 2)$. | $\mathbf{O}(1)$ | N/A |
+| `step(int action)` | Aplica la acción (`1` o `0`) y actualiza la física de la posición y velocidad del objeto. | $\mathbf{O}(1)$ | Retorna `false` si se alcanza el límite. |
+
+---
+
+#### 3. Entrenamiento de la Política de Control (`train_expert_policy`)
+
+Este método ejecuta el flujo completo de **aprendizaje supervisado** para imitar una política de control experta.
+
+| Algoritmo/Fase | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| **Inicialización de Dataset** | Define el set de datos $\mathbf{X}$ (estado) y $\mathbf{Y}$ (acción experta) con $\mathbf{D}=12$ muestras. | $\mathbf{O}(1)$ | Se realiza una vez. |
+| **Entrenamiento** | Llama a `nn_.train<BinaryCrossEntropyLoss, Adam>(...)`. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | Es el cuello de botella del algoritmo. |
+| **Predicción** | Genera predicciones sobre el set $\mathbf{X}$ de entrenamiento para evaluar la **Accuracy**. | $\mathbf{O}(\mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | Pasa $\mathbf{D}$ muestras una vez a través de la red. |
+| **Validación de Precisión** | Compara la acción predicha (`pred > 0.5`) con la acción esperada ($\mathbf{Y}$) y calcula la *Accuracy*. | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ | Bucle lineal sobre las 12 muestras. |
+| **Pruebas de Generalización** | Genera predicciones sobre un set de prueba $\mathbf{X}_{\text{test}}$ (3 muestras). | $\mathbf{O}(\mathbf{D}_{\text{test}} \cdot \mathbf{W}_{\text{total}}) = \mathbf{O}(1)$ | Evalúa la capacidad de generalización del modelo. |
+
+---
+
+#### 4. Serialización
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `save_weights(...)` | Guarda los pesos y bias de la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+| `load_weights(...)` | Carga los pesos y bias de la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+
+---
+
+### PatternClassifier
+---
+
+El archivo `PATTERN_CLASSIFIER.H` define la clase `PatternClassifier<T>`, la cual implementa la solución al problema de clasificación **XOR** (Exclusivo o) utilizando una **Red Neuronal Multicapa (MLP)**. Este es un problema clásico no lineal que demuestra la capacidad de las redes neuronales profundas para aprender separaciones complejas.
+
+## ⚙️ Notación de Complejidad Algorítmica (O)
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| $\mathbf{W}_{\text{layer}}$ | Número de parámetros (pesos o sesgos) en una capa `Dense`. |
+| $\mathbf{B}_{\text{layer}}$ | Número de bias en una capa `Dense`. |
+| $\mathbf{W}_{\text{total}}$ | Número total de parámetros (pesos y bias) en toda la red neuronal. |
+| $\mathbf{D}$ | Tamaño total del dataset de entrenamiento (fijo en 4 para el demo XOR). |
+| $\mathbf{D}_{\text{samples}}$ | Número de muestras en el batch o en la predicción. |
+| $\mathbf{Epochs}$ | Número de épocas de entrenamiento. |
+
+---
+
+#### 💻 Clase `template <typename T> class PatternClassifier`
+
+Esta clase encapsula la red neuronal (`nn_`) y expone los métodos necesarios para la inicialización, entrenamiento, predicción y serialización.
+
+#### 1. Arquitectura de la Red
+
+La red utiliza una arquitectura más profunda que la mínima necesaria para el XOR, lo que mejora la estabilidad y la robustez:
+
+$$\text{Entrada} (2) \rightarrow \text{Densa} (8) \rightarrow \text{ReLU} \rightarrow \text{Densa} (8) \rightarrow \text{ReLU} \rightarrow \text{Densa} (1) \rightarrow \text{Sigmoid} \rightarrow \text{Salida} (1)$$
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `init_network(...)` | Construye la arquitectura MLP con dos capas ocultas. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+| `init_weights_xavier(...)` | Implementa la inicialización de pesos **Xavier/Glorot** para mejorar la convergencia en redes profundas. | $\mathbf{O}(\mathbf{W}_{\text{layer}})$ |
+| `init_bias_zero(...)` | Inicializa los *bias* a cero. | $\mathbf{O}(\mathbf{B}_{\text{layer}})$ |
+| `PatternClassifier()` | Constructor. Inicializa la red utilizando los métodos Xavier/Glorot y bias a cero. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+
+---
+
+#### 2. Entrenamiento (Experimento XOR)
+
+El método `run_xor_experiment()` gestiona la carga del *dataset* XOR, la configuración de hiperparámetros y la ejecución del entrenamiento.
+
+| Algoritmo/Fase | Propósito | Hiperparámetros | Complejidad Dominante |
+| :--- | :--- | :--- | :--- |
+| **Inicialización de Dataset** | Carga las 4 muestras del XOR ($\mathbf{X}$ y $\mathbf{Y}$). | N/A | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ |
+| **Entrenamiento** | Llama a `nn_.train` utilizando **Adam** y **Binary Cross-Entropy Loss** por $\mathbf{20000}$ épocas. | $\mathbf{Epochs}=20000$, $\mathbf{LR}=0.05$, $\mathbf{Batch\_Size}=4$ | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ |
+| **Predicción** | Predice los 4 resultados de entrenamiento. | N/A | $\mathbf{O}(\mathbf{D} \cdot \mathbf{W}_{\text{total}})$ |
+| **Validación de Precisión** | Compara las predicciones con el *threshold* $\mathbf{0.5}$ para calcular la *Accuracy*. | $\mathbf{Threshold}=0.5$ | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ |
+| **Prueba de Robustez** | Prueba el modelo con entradas con ruido (ej. 0.05 en lugar de 0.0) para evaluar la generalización. | N/A | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}}) = \mathbf{O}(1)$ |
+
+---
+
+#### 3. Métodos Públicos y Serialización
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `save_weights(...)` | Delega la serialización de parámetros de la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ | Requisito de portabilidad. |
+| `load_weights(...)` | Delega la carga de parámetros. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ | Requisito de portabilidad. |
+| `predict(const X)` | Realiza la inferencia utilizando la propagación hacia adelante (`nn_.predict`). | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}})$ | Expone la funcionalidad principal de la red. |
+| `train<...>(...)` | Expone el método de entrenamiento de la red para que pueda ser llamado con diferentes optimizadores y funciones de pérdida. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | Permite flexibilidad para pruebas. |
+
+---
+
+### SequencePredictor
+---
+
+El archivo `SEQUENCE_PREDICTOR.H` define la clase `SequencePredictor<T>`, la cual implementa una **Red Neuronal** para resolver un problema de **regresión lineal simple** ($y = 2x + 1$). Este experimento demuestra la capacidad de la librería para manejar tareas de predicción de valores continuos, utilizando la función de pérdida MSE y evitando una activación final.
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| $\mathbf{W}_{\text{layer}}$ | Número de parámetros (pesos o sesgos) en una capa `Dense`. |
+| $\mathbf{B}_{\text{layer}}$ | Número de bias en una capa `Dense`. |
+| $\mathbf{W}_{\text{total}}$ | Número total de parámetros (pesos y bias) en toda la red neuronal. |
+| $\mathbf{D}$ | Tamaño total del dataset de entrenamiento (fijo en 5 para el demo). |
+| $\mathbf{D}_{\text{samples}}$ | Número de muestras en el batch o en la predicción. |
+| $\mathbf{Epochs}$ | Número de épocas de entrenamiento. |
+
+---
+
+#### 💻 Clase `template <typename T> class SequencePredictor`
+
+Esta clase gestiona la red neuronal (`nn_`) enfocada en la regresión de una serie simple.
+
+#### 1. Arquitectura de la Red
+
+La arquitectura es una MLP, diseñada específicamente para regresión:
+
+$$\text{Entrada} (1) \rightarrow \text{Densa} (16) \rightarrow \text{ReLU} \rightarrow \text{Densa} (1) \rightarrow \text{Salida} (1)$$
+
+* **Diferencia Clave:** La **capa de salida NO tiene función de activación** (ni Sigmoid, ni ReLU), permitiendo que la red prediga cualquier valor continuo (regresión).
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `init_network(...)` | Construye la arquitectura MLP de 1 entrada y 1 salida, crítica para regresión. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+| `init_weights_xavier(...)` | Inicialización de pesos **Xavier/Glorot**. | $\mathbf{O}(\mathbf{W}_{\text{layer}})$ |
+| `init_bias_zero(...)` | Inicialización de *bias* a cero. | $\mathbf{O}(\mathbf{B}_{\text{layer}})$ |
+| `SequencePredictor()` | Constructor. Inicializa la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+
+---
+
+#### 2. Experimento de Regresión (`run_series_experiment`)
+
+Este método ejecuta el flujo completo para aprender la relación $\mathbf{Y} = 2\mathbf{X} + 1$.
+
+| Algoritmo/Fase | Propósito | Complejidad Dominante | Observaciones |
+| :--- | :--- | :--- | :--- |
+| **Inicialización de Dataset** | Carga las 5 muestras de entrenamiento ($\mathbf{X}$ y $\mathbf{Y}$). | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ | N/A |
+| **Entrenamiento** | Llama a `nn_.train` utilizando **Adam** como optimizador y **MSELoss** (Mean Squared Error) para medir la pérdida, durante 15,000 épocas. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | MSELoss es estándar para problemas de regresión. |
+| **Predicción (Validación)** | Predice los 5 resultados de entrenamiento. | $\mathbf{O}(\mathbf{D} \cdot \mathbf{W}_{\text{total}})$ | N/A |
+| **Cálculo de Error** | Calcula el **Error Absoluto Promedio** sobre los datos de entrenamiento. | $\mathbf{O}(\mathbf{D}) = \mathbf{O}(1)$ | Se utiliza $\mathbf{Error} = |\mathbf{Y} - \mathbf{Predicción}|$. |
+| **Prueba de Generalización** | Predice valores $(\mathbf{X} = 6.0, 10.0)$ no vistos en el entrenamiento. | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}}) = \mathbf{O}(1)$ | Evalúa la robustez del modelo para extrapolar. |
+
+---
+
+#### 3. Métodos Públicos y Serialización
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `save_weights(...)` | Delega la serialización de parámetros de la red. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+| `load_weights(...)` | Delega la carga de parámetros. | $\mathbf{O}(\mathbf{W}_{\text{total}})$ |
+| `predict(const X)` | Realiza la inferencia (propagación hacia adelante). | $\mathbf{O}(\mathbf{D}_{\text{samples}} \cdot \mathbf{W}_{\text{total}})$ |
+| `train<...>(...)` | Expone el método de entrenamiento de la red. | $\mathbf{O}(\mathbf{Epochs} \cdot \mathbf{D} \cdot \mathbf{W}_{\text{total}})$ |
+
+---
+
 ## 6. Manual de uso
 
 ### Opción 1: Ejecutar tests (Recomendado)
