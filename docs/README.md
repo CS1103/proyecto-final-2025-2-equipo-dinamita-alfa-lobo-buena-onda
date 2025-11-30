@@ -11,8 +11,8 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 
 1. [Datos generales](#datos-generales)
 2. [Requisitos e instalación](#requisitos-e-instalación)
-3. [Estructura del proyecto](#estructura-del-proyecto)
-4. [Investigación teórica](#1-investigación-teórica)
+3. [Investigación teórica](#1-investigación-teórica)
+4. [Estructura del proyecto](#estructura-del-proyecto)
 5. [Diseño e implementación](#2-diseño-e-implementación)
 6. [Ejecución](#3-ejecución)
 7. [Análisis del rendimiento](#4-análisis-del-rendimiento)
