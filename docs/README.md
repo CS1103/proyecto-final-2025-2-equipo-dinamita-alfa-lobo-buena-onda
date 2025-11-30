@@ -10,13 +10,31 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 ## Contenidos
 
 * [1. Datos generales](#1-datos-generales)
-* [2. Requisitos e instalación](#2-requisitos-e-instalación)
-   *[2.1. Requisitos del sistema](#21-requisitos-del-sistema) 
-2. [Requisitos e instalación](#requisitos-e-instalación)
-3. [Investigación teórica](investigacion-teorica)
-4. [Arquitectura de la solución](#Arquitectura-de-la-solución)
-5. [Documentación de archivos del proyecto](#Documentación-de-archivos-del-proyecto)
-6. [Bibliografía](#7-bibliografía) 
+* [2. Requisitos e instalación](#2-requisitos-e-instalacion)
+    * [2.1. Requisitos del sistema](#21-requisitos-del-sistema)
+    * [2.2. Instalación de herramientas](#22-instalacion-de-herramientas)
+        * [macOS:](#macos)
+        * [Ubuntu/Debian:](#ubuntudebian)
+        * [Windows:](#windows)
+    * [2.3. Instalación del proyecto](#23-instalacion-del-proyecto)
+    * [2.4. Solución de problemas](#24-solucion-de-problemas)
+* [3. Investigación teórica](#3-investigacion-teorica)
+* [4. Diseño e implementación](#4-diseño-e-implementacion)
+    * [4.1. Estructura del proyecto](#41-estructura-del-proyecto)
+    * [4.2. Arquitectura de la solución](#42-arquitectura-de-la-solucion)
+* [5. Documentación de codigo](#5-documentacion-de-codigo)
+    * [Clase `Tensor<T, N>`](#clase-tensort-n)
+    * [Clase `NeuralNetwork<T>`](#clase-neuralnetworkt)
+    * [Funciones de Activación (`NN_ACTIVATION.H`)](#funciones-de-activacion-nn_activationh)
+    * [Capa Densa (`Dense<T>`)](#capa-densa-denst)
+    * [Interfaces Fundamentales (`NN_INTERFACES.H`)](#interfaces-fundamentales-nn_interfacesh)
+    * [Funciones de Pérdida (`NN_LOSS.H`)](#funciones-de-perdida-nn_lossh)
+    * [Optimizadores (`NN_OPTIMIZER.H`)](#optimizadores-nn_optimizerh)
+* [6. Manual de uso](#6-manual-de-uso)
+* [7. Ejecución](#7-ejecución)
+* [8. Trabajo en equipo](#8-trabajo-en-equipo)
+* [9. Conclusiones](#9-conclusiones)
+* [10. Bibliografía](#10-bibliografia)
 
 ---
 
@@ -46,7 +64,7 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 * **Estándar**: C++20
 * **Dependencias externas**: **NINGUNA** (solo librería estándar de C++)
 
-### 2.2 Instalación de herramientas
+### 2.2. Instalación de herramientas
 
 #### macOS:
 ```bash
@@ -75,7 +93,7 @@ cmake --version     # Debe ser 3.16+
 # CMake desde: https://cmake.org/download/
 ```
 
-### 2.3 Instalación del proyecto (3 pasos)
+### 2.3. Instalación del proyecto
 
 ```bash
 # 1. Clonar repositorio
@@ -93,7 +111,7 @@ ctest
 
 **✅ Si ves "100% tests passed, 0 tests failed out of 3", la instalación fue exitosa.**
 
-### 2.4 Solución de problemas
+### 2.4. Solución de problemas
 
 | Error | Solución |
 |-------|----------|
@@ -172,7 +190,7 @@ ctest
 
 ## 4. Diseño e implementación
 
-### 4.1 Estructura del proyecto
+### 4.1. Estructura del proyecto
 
 ```
 pong_ai/
@@ -223,7 +241,7 @@ pong_ai/
 ---
 
 
-### 4.2 Arquitectura de la solución
+### 4.2. Arquitectura de la solución
 
 **Patrones de diseño utilizados:**
 
