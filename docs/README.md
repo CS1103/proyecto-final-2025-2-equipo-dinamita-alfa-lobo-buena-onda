@@ -9,20 +9,18 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 
 ## Contenidos
 
-1. [Datos generales](#datos-generales)
+* [1. Datos generales](#1-datos-generales)
+* [2. Requisitos e instalación](#2-requisitos-e-instalación)
+   *[2.1. Requisitos del sistema](#21-requisitos-del-sistema) 
 2. [Requisitos e instalación](#requisitos-e-instalación)
-3. [Investigación teórica](#1-investigación-teórica)
-4. [Estructura del proyecto](#estructura-del-proyecto)
-5. [Diseño e implementación](#2-diseño-e-implementación)
-6. [Ejecución](#3-ejecución)
-7. [Análisis del rendimiento](#4-análisis-del-rendimiento)
-8. [Trabajo en equipo](#5-trabajo-en-equipo)
-9. [Conclusiones](#6-conclusiones)
-10. [Bibliografía](#7-bibliografía)
+3. [Investigación teórica](investigacion-teorica)
+4. [Arquitectura de la solución](#Arquitectura-de-la-solución)
+5. [Documentación de archivos del proyecto](#Documentación-de-archivos-del-proyecto)
+6. [Bibliografía](#7-bibliografía) 
 
 ---
 
-## Datos generales
+## 1. Datos generales
 
 * **Tema**: Redes Neuronales en AI
 * **Grupo**: `Equipo dinamita alfa lobo buena onda`
@@ -35,9 +33,9 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 
 ---
 
-## Requisitos e instalación
+## 2. Requisitos e instalación
 
-### Requisitos del sistema
+### 2.1. Requisitos del sistema
 
 * **Sistema Operativo**: Linux, macOS, o Windows con MinGW
 * **Compilador**: 
@@ -48,7 +46,7 @@ Implementación completa de una red neuronal multicapa desde cero en C++20, incl
 * **Estándar**: C++20
 * **Dependencias externas**: **NINGUNA** (solo librería estándar de C++)
 
-### Instalación de herramientas
+### 2.2 Instalación de herramientas
 
 #### macOS:
 ```bash
@@ -77,7 +75,7 @@ cmake --version     # Debe ser 3.16+
 # CMake desde: https://cmake.org/download/
 ```
 
-### Instalación del proyecto (3 pasos)
+### 2.3 Instalación del proyecto (3 pasos)
 
 ```bash
 # 1. Clonar repositorio
@@ -95,7 +93,7 @@ ctest
 
 **✅ Si ves "100% tests passed, 0 tests failed out of 3", la instalación fue exitosa.**
 
-### Solución de problemas
+### 2.4 Solución de problemas
 
 | Error | Solución |
 |-------|----------|
@@ -105,7 +103,7 @@ ctest
 
 ---
 
-### 1. Investigación teórica
+## 3. Investigación teórica
 
 
 * 1. Historia y evolución de las NNs.
@@ -172,9 +170,9 @@ ctest
 
 ---
 
-## 2. Diseño e implementación
+## 4. Diseño e implementación
 
- - Estructura del proyecto
+### 4.1 Estructura del proyecto
 
 ```
 pong_ai/
@@ -225,19 +223,7 @@ pong_ai/
 ---
 
 
-### Álgebra Tensorial
-
-Implementación de `Tensor<T, Rank>` que soporta:
-- Operaciones element-wise (suma, resta, multiplicación)
-- Broadcasting (estilo NumPy)
-- Multiplicación matricial
-- Transposición
-
----
-
-
-
-### 2.1 Arquitectura de la solución
+### 4.2 Arquitectura de la solución
 
 **Patrones de diseño utilizados:**
 
@@ -251,58 +237,350 @@ Implementación de `Tensor<T, Rank>` que soporta:
 - **Genérico**: Templates para reutilización (`Tensor<float, 2>`, `Tensor<double, 3>`)
 - **Funcional**: Lambdas para inicialización de pesos
 
-### 2.2 Componentes principales
+## 5. Documentación de codigo
 
-#### Epic 1: Tensor<T, Rank>
-```cpp
-// Ejemplo de uso
-Tensor<float, 2> matrix(3, 4);  // Matriz 3x4
-matrix(1, 2) = 5.0;              // Acceso variádico
-auto transposed = transpose_2d(matrix);
-auto result = matrix_product(A, B);  // Multiplicación matricial
-```
+### Clase `Tensor<T, N>`
 
-**Características:**
-- Almacenamiento eficiente con `std::vector<T>`
-- Cálculo de strides para acceso O(1)
-- Broadcasting automático
-- Soporte para operaciones batch
+El archivo `Tensor.h` define la plantilla de clase `utec::algebra::Tensor<T, N]`, la estructura de datos fundamental para el manejo de arrays multi-dimensionales en la librería de álgebra. Proporciona soporte para operaciones aritméticas elemento a elemento, manipulación de formas y funcionalidades avanzadas como **Broadcasting** y **Multiplicación Matricial por Lotes (BMM)**.
 
-#### Epic 2: Red Neuronal
-```cpp
-NeuralNetwork<float> nn;
-nn.add_layer(std::make_unique<Dense<float>>(2, 4, init_xavier, init_zeros));
-nn.add_layer(std::make_unique<ReLU<float>>());
-nn.add_layer(std::make_unique<Dense<float>>(4, 1, init_xavier, init_zeros));
+#### ⚙️ Notación de Complejidad Algorítmica ($\mathbf{O}$)
 
-nn.train<BinaryCrossEntropyLoss, Adam>(X, Y, epochs=1000, batch_size=4, lr=0.01);
-```
+Las complejidades se expresan en función de las siguientes variables clave del Tensor y sus operaciones:
 
-**Forward Propagation (O(L·N·M)):**
-```
-Para cada capa l de 1 a L:
-    Z[l] = W[l] · A[l-1] + b[l]
-    A[l] = activation(Z[l])
-```
+| Símbolo | Descripción |
+| :--- | :--- |
+| $\mathbf{N}$ | Rango del Tensor (número de dimensiones). |
+| $\mathbf{S}$ | Tamaño total del Tensor (número de elementos). |
+| $\mathbf{S}_{\text{res}}$ | Tamaño del Tensor resultado después de aplicar **Broadcasting**. |
+| $\mathbf{B}$ | Tamaño del lote (*Batch Size*). |
+| $\mathbf{M}$ | Filas de la submatriz. |
+| $\mathbf{K}$ | Dimensión común para la multiplicación matricial. |
+| $\mathbf{L}$ | Columnas de la submatriz. |
+| C_MAT_MUL | Costo de Multiplicación Matricial por Lotes: $\mathbf{O}(\mathbf{B} \cdot \mathbf{M} \cdot \mathbf{K} \cdot \mathbf{L})$. |
 
-**Backward Propagation (O(L·N·M)):**
-```
-Para cada capa l de L a 1:
-    dZ[l] = dA[l] ⊙ activation'(Z[l])
-    dW[l] = dZ[l] · A[l-1]^T
-    db[l] = sum(dZ[l])
-    dA[l-1] = W[l]^T · dZ[l]
-```
+---
 
-#### Epic 3: Aplicaciones
+#### 🚀 Clase `template <typename T, size_t N> class Tensor`
+
+#### 1. Constructores y Asignación
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `Tensor(Dims...)` | Constructor principal. Inicializa la forma, los `strides` y redimensiona `data_`. | $\mathbf{O}(\mathbf{S} + \mathbf{N})$ |
+| `Tensor(const Tensor&)` | Constructor de copia. | $\mathbf{O}(\mathbf{S} + \mathbf{N})$ |
+| `operator=(const Tensor&)` | Operador de asignación de copia. | $\mathbf{O}(\mathbf{S} + \mathbf{N})$ |
+| `operator=(std::initializer_list<T>)` | Asignación de valores a `data_` desde una lista de inicialización. | $\mathbf{O}(\mathbf{S})$ |
+
+#### 2. Acceso y Manipulación de Forma
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `fill(const T& value)` | Llena todos los elementos del Tensor con un valor escalar. | $\mathbf{O}(\mathbf{S})$ |
+| `operator()(Indices...)` | **Acceso a Elementos** usando índices multi-dimensionales. | $\mathbf{O}(\mathbf{N})$ |
+| `reshape(Dims...)` | Cambia la forma del Tensor, manteniendo el tamaño total (`S`) o redimensionando si es necesario. | $\mathbf{O}(\mathbf{S}' + \mathbf{N})$ |
+| `compute_index()` | Método interno para la conversión de índices multi-dim a índice plano. | $\mathbf{O}(\mathbf{N})$ |
+| `print()` | Método interno recursivo para la impresión estructurada del Tensor. | $\mathbf{O}(\mathbf{S})$ |
+
+#### 3. Operaciones Aritméticas (Element-wise)
+
+Estas operaciones soportan **Broadcasting** cuando las formas de los operandos son compatibles.
+
+| Operación | Descripción | Complejidad (sin Broadcast) | Complejidad (con Broadcast) |
+| :--- | :--- | :--- | :--- |
+| `operator+`, `operator-`, `operator*` | Operación **Tensor-Tensor** elemento a elemento. | $\mathbf{O}(\mathbf{S})$ | $\mathbf{O}(\mathbf{S}_{\text{res}} \cdot \mathbf{N})$ |
+| `operator+`, `operator-`, `operator*`, `operator/` | Operación **Tensor-Escalar** elemento a elemento (a la derecha). | $\mathbf{O}(\mathbf{S})$ | N/A |
+| `friend operator+`, `operator-`, `operator*`, `operator/` | Operación **Escalar-Tensor** elemento a elemento (a la izquierda). | $\mathbf{O}(\mathbf{S})$ | N/A |
+
+---
+
+#### 🌐 Funciones Globales de Álgebra
+
+| Función | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `transpose_2d` | Realiza la **Transposición** de las dos últimas dimensiones (`N-2` y `N-1`). | $\mathbf{O}(\mathbf{S} \cdot \mathbf{N})$ | Requiere $\mathbf{N} \ge 2$. |
+| `matrix_product` | Implementa la **Multiplicación Matricial por Lotes (BMM)**. | $\mathbf{O}(\mathbf{B} \cdot \mathbf{M} \cdot \mathbf{K} \cdot \mathbf{L})$ | Requiere que las formas internas sean compatibles. |
+
+---
+
+### Clase `NeuralNetwork<T>`
+
+El archivo `NeuralNetwork.h` define la plantilla de clase `utec::neural_network::NeuralNetwork<T>`, que actúa como el **contenedor principal** para la red neuronal. Su función es ensamblar las capas, coordinar los pasos de la propagación hacia adelante y hacia atrás, y gestionar el ciclo de vida completo del entrenamiento y la serialización (guardado/carga).
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+Las complejidades se expresan en función de las siguientes variables:
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| **L** | Número de capas en la red. |
+| **E** | Número de épocas de entrenamiento. |
+| **N** | Número total de muestras de entrenamiento. |
+| **B** | Tamaño máximo del batch (`batch_size`). |
+| **P** | Número total de parámetros (pesos y sesgos) en la red. |
+| **S_BATCH** | Tamaño del batch actual (variable, $\le$ B). |
+| **F** | Costo computacional de la propagación de una sola muestra a través de toda la red. |
+| **F_INPUT** | Número de características (columnas) en el set de datos de entrada. |
+| **C_LAYER_OP** | Costo de una operación (forward, backward, update) en una única capa. |
+
+---
+
+#### 💻 Clase `template <typename T> class NeuralNetwork`
+
+#### 1. Métodos de Propagación y Ayuda (Internos/Privados)
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `forward(const Tensor<T, 2>& input)` | Realiza la propagación hacia adelante (Forward Pass). | $\mathbf{O}(\mathbf{S\_BATCH} \cdot \mathbf{F})$ | Lineal con el tamaño del batch y el costo de propagación por muestra. |
+| `backward(const Tensor<T, 2>& gradient)` | Realiza la retropropagación (Backpropagation), calculando los gradientes de los parámetros. | $\mathbf{O}(\mathbf{S\_BATCH} \cdot \mathbf{F})$ | Lineal con el tamaño del batch y el costo de propagación por muestra. |
+| `update_parameters(IOptimizer<T>& optimizer)` | Aplica la actualización de pesos y sesgos a cada capa usando el optimizador. | $\mathbf{O}(\mathbf{P} + \mathbf{C}_{\text{optimizer}}^\text{step})$ | Costo lineal con el número total de parámetros $\mathbf{P}$. |
+| `extract_batch(...)` | Extrae un subconjunto de filas (un batch) de los datos totales de entrenamiento. | $\mathbf{O}(\mathbf{S\_BATCH} \cdot \mathbf{F\_INPUT})$ | Costo de copia de los datos. |
+
+#### 2. Métodos Públicos Centrales
+
+| Método | Propósito | Complejidad | Explicación de la Complejidad |
+| :--- | :--- | :--- | :--- |
+| `add_layer(...)` | Añade una nueva capa (`ILayer`) a la arquitectura de la red. | $\mathbf{O}(1)$ amortizado | Utiliza `std::vector::push_back`. |
+| `train<LossType, OptimizerType>(...)` | **Bucle de entrenamiento.** Repite el ciclo Forward $\rightarrow$ Loss $\rightarrow$ Backward $\rightarrow$ Update por $\mathbf{E}$ épocas y $\mathbf{N}/\mathbf{B}$ batches. | $\mathbf{O}(\mathbf{E} \cdot \mathbf{N} \cdot \mathbf{F})$ | La operación dominante (Forward/Backward) tiene un costo de $\mathbf{O}(\mathbf{S\_BATCH} \cdot \mathbf{F})$. Al sumar sobre todas las épocas, el costo total es $\mathbf{O}(\mathbf{E} \cdot \mathbf{N} \cdot \mathbf{F})$. |
+| `predict(const Tensor<T, 2>& X)` | Realiza una predicción sobre un conjunto de datos `X`. | $\mathbf{O}(\mathbf{N}_{\text{pred}} \cdot \mathbf{F})$ | Lineal con el número de muestras a predecir y el costo de propagación. |
+
+---
+
+#### 3. Serialización (Carga y Guardado de Estado)
+
+Estos métodos asumen que solo las capas `Dense` contienen parámetros que deben ser guardados/cargados. $\mathbf{P}_{\text{dense}}$ es el número total de parámetros en las capas densas.
+
+| Método | Propósito | Complejidad |
+| :--- | :--- | :--- |
+| `save_state(const std::string& filepath) const` | Serializa y guarda los pesos y sesgos de las capas densas en un archivo binario. | $\mathbf{O}(\mathbf{P}_{\text{dense}})$ |
+| `load_state(const std::string& filepath)` | Deserializa y carga los pesos y sesgos en las capas densas de la red. | $\mathbf{O}(\mathbf{P}_{\text{dense}})$ |
+
+---
+
+### Funciones de Activación (`NN_ACTIVATION.H`)
+
+El archivo `NN_ACTIVATION.H` define implementaciones concretas de las funciones de activación más comunes (`ReLU` y `Sigmoid`) como clases que heredan de `ILayer<T>`. Estas capas se utilizan para introducir **no linealidad** en la red neuronal.
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+Las complejidades se expresan en función de las siguientes variables, relacionadas con el tensor de entrada/salida de la capa de activación:
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| **S_BATCH** | Número de muestras en el lote actual. |
+| **M_OUT** | Número de características/neuronas en la capa de salida. |
+| **N_ELEMENTS** | Número total de elementos en el tensor de entrada/salida: $\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{OUT}}$. |
+
+---
+
+#### 💻 1. Clase `template <typename T> class ReLU`
+
+Implementa la función de activación Rectified Linear Unit: $f(x) = \max(0, x)$.
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `forward(const Tensor<T, 2>& z)` | Calcula $\max(0, z)$ elemento a elemento y almacena la entrada `z` para la retropropagación. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Operación lineal y de almacenamiento. |
+| `backward(const Tensor<T, 2>& gradient)` | Calcula la derivada $\partial L / \partial Z$. Pasa el gradiente si la entrada original (`input_`) fue positiva, o `0` si fue negativa/cero. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Operación lineal (multiplicación por el *máscara* binaria). |
+| `update_params(...)` | **No implementado/No aplica.** Las capas de activación no tienen parámetros entrenables. | $\mathbf{O}(1)$ | Heredado de `ILayer<T>`. |
+
+---
+
+#### 💻 2. Clase `template <typename T> class Sigmoid`
+
+Implementa la función de activación Sigmoide: $f(x) = 1 / (1 + e^{-x})$.
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `forward(const Tensor<T, 2>& z)` | Calcula la Sigmoid elemento a elemento. Aplica un *clipping* (`EPSILON`) para mantener la estabilidad numérica. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Almacena la salida activada (`output_`) para la retropropagación. |
+| `backward(const Tensor<T, 2>& gradient)` | Calcula la derivada $\partial L / \partial Z$. Utiliza la propiedad de la derivada de Sigmoid: $\mathbf{A}(1-\mathbf{A})$, donde $\mathbf{A}$ es la salida almacenada. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | La derivada calculada se multiplica por el gradiente entrante. |
+| `update_params(...)` | **No implementado/No aplica.** Las capas de activación no tienen parámetros entrenables. | $\mathbf{O}(1)$ | Heredado de `ILayer<T>`. |
+
+---
+
+### 📖 Capa Densa (`Dense<T>`)
+
+El archivo `NN_DENSE.H` define la clase `utec::neural_network::Dense<T>`, que implementa una capa completamente conectada (Fully Connected Layer) en una red neuronal. Esta capa realiza una transformación lineal sobre la entrada: $\mathbf{Y} = \mathbf{X} \cdot \mathbf{W} + \mathbf{b}$.
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+Las complejidades se centran en el costo de la multiplicación matricial, que es la operación dominante en esta capa.
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| **S_BATCH** | Tamaño del batch actual (número de muestras). |
+| **M_IN** | Número de características de entrada. |
+| **M_OUT** | Número de neuronas de salida. |
+| **P_LAYER** | Número total de parámetros de la capa ($\mathbf{W} + \mathbf{b}$). |
+| **C_MAT_MUL** | Costo de la Multiplicación Matricial Clave: $\mathbf{O}(\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{IN}} \cdot \mathbf{M}_{\text{OUT}})$. |
+
+---
+
+#### 💻 Clase `template <typename T> class Dense`
+
+#### 1. Constructores y Propiedades
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `Dense(in_f, out_f, init_w_fun, init_b_fun)` | Constructor principal. Inicializa las matrices de pesos (`weights_`) y los vectores de sesgos (`biases_`) con las funciones proporcionadas, y los gradientes a cero. | $\mathbf{O}(\mathbf{M}_{\text{IN}} \cdot \mathbf{M}_{\text{OUT}})$ | La inicialización domina el costo. |
+| `Dense()` | Constructor vacío, utilizado principalmente antes de la deserialización (`load_state`). | $\mathbf{O}(1)$ | Inicializa las dimensiones a cero. |
+
+#### 2. Algoritmos de Propagación y Retropropagación
+
+| Método | Propósito | Complejidad | Explicación del Algoritmo |
+| :--- | :--- | :--- | :--- |
+| `forward(const Tensor<T, 2>& x)` | Propagación hacia adelante: $\mathbf{Y} = \mathbf{X} \cdot \mathbf{W} + \mathbf{b}$. | $\mathbf{O}(\mathbf{C}_{\text{MAT\_MUL}})$ | Domina la multiplicación matricial $\mathbf{X} \cdot \mathbf{W}$. |
+| `backward(const Tensor<T, 2>& dZ)` | Retropropagación. Calcula los gradientes internos ($\mathbf{dW}, \mathbf{db}$) y el gradiente para la capa anterior ($\mathbf{dX}$). | $\mathbf{O}(\mathbf{C}_{\text{MAT\_MUL}})$ | Domina el cálculo de $\mathbf{dW} = \mathbf{X}^{\text{T}} \cdot \mathbf{dZ}$ y $\mathbf{dX} = \mathbf{dZ} \cdot \mathbf{W}^{\text{T}}$. |
+| `update_params(IOptimizer<T>& optimizer)` | Aplica las actualizaciones del optimizador a los pesos (`weights_`) y sesgos (`biases_`) usando los gradientes calculados. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Costo lineal con el número de parámetros de la capa. |
+
+#### 3. Serialización (Carga y Guardado de Parámetros)
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `save_parameters(std::ofstream& ofs) const` | Escribe los contenidos de `weights_` y `biases_` en el flujo binario. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Utiliza la función auxiliar `save_tensor`. |
+| `load_parameters(std::ifstream& ifs)` | Lee los contenidos de `weights_` y `biases_` del flujo binario y redimensiona la capa. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Utiliza la función auxiliar `load_tensor`. |
+| `save_tensor(...)` / `load_tensor(...)` | Funciones auxiliares para gestionar el guardado/carga binaria de las dimensiones y el contenido del tensor. | $\mathbf{O}(\mathbf{N}_{\text{elements}})$ | Costo lineal con el número de elementos del tensor. |
+
+---
+
+### Interfaces Fundamentales (`NN_INTERFACES.H`)
+
+El archivo `NN_INTERFACES.H` define las interfaces puramente virtuales que establecen el contrato y la estructura requerida para los principales componentes de la red neuronal: **Capas** (`ILayer`), **Funciones de Pérdida** (`ILoss`) y **Optimizadores** (`IOptimizer`).
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+Las complejidades son las estimaciones de costo **esperadas** para las implementaciones concretas que hereden estas interfaces.
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| **S\_BATCH** | Tamaño del batch actual (número de muestras). |
+| **M\_IN** | Número de características de entrada. |
+| **M\_OUT** | Número de neuronas de salida. |
+| **P\_LAYER** | Número total de parámetros de la capa. |
+| **N\_ELEMENTS** | Número total de elementos en el tensor de salida/gradiente ($\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{OUT}}$). |
+| **C\_MAT\_OP** | Costo de operaciones matriciales (ej. Multiplicación Matricial, $\mathbf{C}_{\text{mat\_mul}}$). |
+
+---
+
+#### 💻 1. Interfaz `template <typename T> class ILayer`
+
+Define el comportamiento base de cualquier componente funcional de la red (capas densas, de activación, etc.).
+
+| Método | Propósito | Complejidad Esperada | Requisito Clave |
+| :--- | :--- | :--- | :--- |
+| `forward(...)` | **Propagación hacia Adelante:** Calcula la salida de la capa. | $\mathbf{O}(\mathbf{C}_{\text{MAT\_OP}})$ o $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Debe almacenar la entrada para el cálculo del `backward`. |
+| `backward(...)` | **Retropropagación:** Calcula el gradiente para la capa anterior ($\mathbf{dX}$). | $\mathbf{O}(\mathbf{C}_{\text{MAT\_OP}})$ o $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Debe calcular y almacenar los gradientes de los parámetros internos. |
+| `update_params(...)` | **Actualización de Parámetros:** Aplica el optimizador a los parámetros internos de la capa. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Implementación vacía por defecto ($\mathbf{O}(1)$) para capas sin parámetros. |
+
+---
+
+#### 💻 2. Interfaz `template <typename T, int N> class ILoss`
+
+Define el contrato para las funciones de pérdida, utilizadas para medir la discrepancia entre predicciones y valores reales.
+
+| Método | Propósito | Complejidad Esperada | Requisito Clave |
+| :--- | :--- | :--- | :--- |
+| `loss() const` | **Cálculo de Pérdida:** Devuelve el valor escalar total de la pérdida del batch. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Iteración lineal sobre todos los elementos de salida. |
+| `loss_gradient() const` | **Gradiente de Pérdida:** Calcula el gradiente de la pérdida con respecto a la entrada de la función de pérdida. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Genera el tensor de gradiente inicial para el proceso de retropropagación. |
+
+---
+
+#### 💻 3. Interfaz `template <typename T> class IOptimizer`
+
+Define el contrato para los algoritmos de optimización encargados de actualizar los parámetros de la red.
+
+| Método | Propósito | Complejidad Esperada | Requisito Clave |
+| :--- | :--- | :--- | :--- |
+| `update(...)` | **Actualización de Parámetros:** Aplica la regla de optimización (ej. SGD) a un tensor de parámetros y su gradiente. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Costo lineal con el número de elementos a actualizar. |
+| `step()` | **Paso Global:** Realiza una acción de paso global del optimizador (ej. incrementar contador de iteraciones). | $\mathbf{O}(1)$ | Puede ser $\mathbf{O}(\mathbf{P})$ si maneja estados globales (e.g., Adam, RMSprop). |
+
+---
+
+### Funciones de Pérdida (`NN_LOSS.H`)
+
+El archivo `NN_LOSS.H` define las implementaciones concretas de las funciones de pérdida más comunes, heredando de la interfaz `ILoss<T, 2>`. Estas clases son responsables de calcular el error entre las predicciones ($\mathbf{Y}_{\text{pred}}$) y los valores verdaderos ($\mathbf{Y}_{\text{true}}$), y generar el gradiente inicial para la retropropagación.
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+Las complejidades se basan en la iteración lineal sobre todos los elementos de los tensores de predicción y objetivo.
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| **S\_BATCH** | Número de muestras en el lote actual. |
+| **M\_OUT** | Número de neuronas de salida. |
+| **N\_ELEMENTS** | Número total de elementos en el tensor de salida ($\mathbf{S}_{\text{BATCH}} \cdot \mathbf{M}_{\text{OUT}}$). |
+
+---
+
+#### 💻 1. Clase `template <typename T> class MSELoss`
+
+Implementa la **Pérdida por Error Cuadrático Medio (Mean Squared Error)**: $$\text{MSE} = \frac{1}{n} \sum (\mathbf{Y}_{\text{pred}} - \mathbf{Y}_{\text{true}})^2$$
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `MSELoss(...)` | Constructor. Almacena las predicciones y el objetivo. | $\mathbf{O}(1)$ | Verifica que las formas de los tensores coincidan. |
+| `loss() const` | Calcula el valor escalar del MSE promediado sobre $\mathbf{N}_{\text{ELEMENTS}}$. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Involucra resta, elevación al cuadrado y suma lineal. |
+| `loss_gradient() const` | Calcula el gradiente inicial: $\mathbf{d}\mathbf{L}/\mathbf{d}\mathbf{Y}_{\text{pred}} = \frac{2}{n} (\mathbf{Y}_{\text{pred}} - \mathbf{Y}_{\text{true}})$. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Resta elemento a elemento seguida de una multiplicación por factor escalar. |
+
+---
+
+#### 💻 2. Clase `template <typename T> class BinaryCrossEntropyLoss`
+
+Implementa la **Pérdida por Entropía Cruzada Binaria (Binary Cross Entropy)**: $$\text{BCE} = -\frac{1}{n} \sum [y \cdot \log(p) + (1-y) \cdot \log(1-p)]$$
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `BinaryCrossEntropyLoss(...)` | Constructor. Almacena las predicciones y el objetivo. | $\mathbf{O}(1)$ | Verifica que las formas de los tensores coincidan. |
+| `loss() const` | Calcula el valor escalar de la BCE promediado sobre $\mathbf{N}_{\text{ELEMENTS}}$. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Involucra operaciones logarítmicas por elemento. Utiliza $\mathbf{\epsilon}$ para estabilidad. |
+| `loss_gradient() const` | Calcula el gradiente inicial: $\mathbf{d}\mathbf{L}/\mathbf{d}\mathbf{P}$. | $\mathbf{O}(\mathbf{N}_{\text{ELEMENTS}})$ | Cálculo por elemento, utilizando la fórmula del gradiente de BCE. |
+
+---
+
+### Optimizadores (`NN_OPTIMIZER.H`)
+
+El archivo `NN_OPTIMIZER.H` define las implementaciones de los algoritmos de optimización **SGD** y **Adam**, que heredan de la interfaz `IOptimizer<T>`. Estas clases gestionan la lógica para actualizar los parámetros de la red utilizando los gradientes calculados.
+
+#### ⚙️ Notación de Complejidad Algorítmica (O)
+
+| Símbolo | Descripción |
+| :--- | :--- |
+| **P\_LAYER** | Número total de parámetros (pesos o sesgos) en el tensor que se está actualizando. |
+| **L\_DENSE** | Número de capas densas (que tienen parámetros) en la red. |
+| **t** | Contador de pasos global del optimizador. |
+
+---
+
+#### 💻 1. Clase `template <typename T> class SGD`
+
+Implementa el **Descenso de Gradiente Estocástico (Stochastic Gradient Descent)**, la regla de actualización más básica: $$\mathbf{\theta} = \mathbf{\theta} - \mathbf{LR} \cdot \mathbf{\nabla}\mathbf{\theta}$$
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `SGD(...)` | Constructor. Inicializa la tasa de aprendizaje. | $\mathbf{O}(1)$ | N/A |
+| `update(...)` | **Algoritmo de Actualización Principal.** Aplica la resta del gradiente multiplicado por la tasa de aprendizaje a cada parámetro. | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | Costo lineal con el número de parámetros en el tensor actualizado. |
+| `step()` | **Paso Global.** No implementa ninguna acción. | $\mathbf{O}(1)$ | Heredado de `IOptimizer<T>`. |
+
+---
+
+#### 💻 2. Clase `template <typename T> class Adam`
+
+Implementa el optimizador **Adam (Adaptive Moment Estimation)**, que utiliza promedios móviles de primer ($\mathbf{m}$) y segundo ($\mathbf{v}$) momento de los gradientes, e incluye corrección de *bias*.
+
+| Método | Propósito | Complejidad | Observaciones |
+| :--- | :--- | :--- | :--- |
+| `Adam(...)` | Constructor. Inicializa hiperparámetros ($\mathbf{LR}, \beta_1, \beta_2, \epsilon$) y el contador de pasos $\mathbf{t}=0$. | $\mathbf{O}(1)$ | N/A |
+| `update(...)` | **Algoritmo de Actualización Adam.** | $\mathbf{O}(\mathbf{P}_{\text{LAYER}})$ | El costo es lineal con $\mathbf{P}_{\text{LAYER}}$. La gestión de momentos (`std::map`) es $\mathbf{O}(\log(\mathbf{L}_{\text{DENSE}}))$ para acceso. |
+| `step()` | **Paso Global.** Incrementa el contador de pasos global $\mathbf{t}$. | $\mathbf{O}(1)$ | Es esencial para el cálculo de la corrección de *bias* en `Adam`. |
+
+
+
 
 1. **PatternClassifier**: Resuelve XOR (problema no linealmente separable)
 2. **SequencePredictor**: Aprende patrones aritméticos (y = 2x + 1)
 3. **ControllerDemo**: Política de control basada en estado (posición, velocidad)
 
-### 2.3 Manual de uso
+---
+## 6. Manual de uso
 
-#### Opción 1: Ejecutar tests (Recomendado)
+### Opción 1: Ejecutar tests (Recomendado)
 ```bash
 cd build
 ctest --verbose
@@ -316,7 +594,7 @@ Test #3: TestApplications ................. Passed (8/8 tests)
 100% tests passed, 0 tests failed out of 3
 ```
 
-#### Opción 2: Ejecutar aplicaciones
+### Opción 2: Ejecutar aplicaciones
 
 **Clasificador de patrones (XOR):**
 ```bash
@@ -368,7 +646,7 @@ nn.load_state("model.bin");
 
 ---
 
-## 3. Ejecución
+## 7. Ejecución
 
 ### Demo automatizada (video)
 
@@ -385,7 +663,7 @@ cd build && rm -rf * && cmake .. && make -j4 && ctest --verbose && ./pattern_cla
 
 ---
 
-## 4. Análisis del rendimiento
+## 8. Análisis del rendimiento
 
 ### Métricas de tests
 
@@ -452,7 +730,7 @@ cd build && rm -rf * && cmake .. && make -j4 && ctest --verbose && ./pattern_cla
 
 ---
 
-## 5. Trabajo en equipo
+## 8. Trabajo en equipo
 
 | Tarea | Miembro | Rol | Horas |
 |-------|---------|-----|-------|
@@ -471,7 +749,7 @@ cd build && rm -rf * && cmake .. && make -j4 && ctest --verbose && ./pattern_cla
 
 ---
 
-## 6. Conclusiones
+## 9. Conclusiones
 
 ### Logros
 
@@ -501,7 +779,7 @@ Para proyectos futuros o mejoras:
 
 ---
 
-## 7. Bibliografía
+## 10. Bibliografía
 
 - Aprende Machine Learning, "Breve Historia de las Redes Neuronales Artificiales", https://www.aprendemachinelearning.com/breve-historia-de-las-redes-neuronales-artificiales/, [En línea]. Disponible en: https://www.aprendemachinelearning.com/breve-historia-de-las-redes-neuronales-artificiales/. [Accedido: 24-11-2025].
 
