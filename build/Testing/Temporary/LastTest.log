@@ -1,10 +1,10 @@
-Start testing: Nov 30 23:25 -05
+Start testing: Dec 01 00:19 -05
 ----------------------------------------------------------
 1/3 Testing: TestTensor
 1/3 Test: TestTensor
-Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_tensor"
+Command: "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/test_tensor"
 Directory: /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
-"TestTensor" start time: Nov 30 23:25 -05
+"TestTensor" start time: Dec 01 00:19 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
@@ -20,18 +20,18 @@ Output:
    ✅ COBERTURA COMPLETA: ~95% de funcionalidad probada  
 ==========================================================
 <end of output>
-Test time =   0.00 sec
+Test time =   0.50 sec
 ----------------------------------------------------------
 Test Passed.
-"TestTensor" end time: Nov 30 23:25 -05
+"TestTensor" end time: Dec 01 00:19 -05
 "TestTensor" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 2/3 Testing: TestNeuralNetwork
 2/3 Test: TestNeuralNetwork
-Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_neural_network"
+Command: "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/test_neural_network"
 Directory: /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
-"TestNeuralNetwork" start time: Nov 30 23:25 -05
+"TestNeuralNetwork" start time: Dec 01 00:19 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
@@ -49,18 +49,18 @@ Output:
    ✅ ÉPIC 2 COMPLETAMENTE CUBIERTO - 8 Tests Pasados   
 ==========================================================
 <end of output>
-Test time =   0.03 sec
+Test time =   0.27 sec
 ----------------------------------------------------------
 Test Passed.
-"TestNeuralNetwork" end time: Nov 30 23:25 -05
+"TestNeuralNetwork" end time: Dec 01 00:19 -05
 "TestNeuralNetwork" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 3/3 Testing: TestApplications
 3/3 Test: TestApplications
-Command: "/Users/cardenas/Desktop/proyecto3/pong_ai/build/test_applications"
+Command: "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/test_applications"
 Directory: /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
-"TestApplications" start time: Nov 30 23:25 -05
+"TestApplications" start time: Dec 01 00:19 -05
 Output:
 ----------------------------------------------------------
 ==========================================================
@@ -68,7 +68,7 @@ Output:
 ==========================================================
 -> Ejecutando prueba: Portabilidad/Serialización (Clasificador)...		[PASSED] ✅
 -> Ejecutando prueba: Robustez ante Ruido (Clasificador)... (Robustez: 4/4)		[PASSED] ✅
--> Ejecutando prueba: Generalización (Predictor)... (Pred: 13, Expected: 13)		[PASSED] ✅
+-> Ejecutando prueba: Generalización (Predictor)... (Pred: 12.9968, Expected: 13)		[PASSED] ✅
 -> Ejecutando prueba: Interpolación (Predictor)...		[PASSED] ✅
 -> Ejecutando prueba: Simulación y Control (Demo)... (2 steps)		[PASSED] ✅
 -> Ejecutando prueba: Condiciones Límite (Demo)...EnvGym: ¡Límite alcanzado! Posición final: 2.40998
@@ -80,11 +80,11 @@ Output:
    📦 Portabilidad ✓ | 🎯 Generalización ✓ | 🎮 Control ✓
 ==========================================================
 <end of output>
-Test time =   0.29 sec
+Test time =   0.60 sec
 ----------------------------------------------------------
 Test Passed.
-"TestApplications" end time: Nov 30 23:25 -05
+"TestApplications" end time: Dec 01 00:19 -05
 "TestApplications" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 30 23:25 -05
+End testing: Dec 01 00:19 -05

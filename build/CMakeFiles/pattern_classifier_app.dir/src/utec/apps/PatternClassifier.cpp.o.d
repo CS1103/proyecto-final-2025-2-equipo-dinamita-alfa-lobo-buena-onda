@@ -1,5 +1,5 @@
 CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o: \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/src/utec/apps/PatternClassifier.cpp \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/PatternClassifier.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config_site \
@@ -981,7 +981,7 @@ CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/apps/PatternClassifier.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/apps/PatternClassifier.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/random \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/bernoulli_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h \
@@ -1033,13 +1033,13 @@ CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/seed_seq.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/algebra/Tensor.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/algebra/Tensor.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/neural_network.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_interfaces.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_activation.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_dense.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_loss.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_optimizer.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/neural_network.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_interfaces.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_activation.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_dense.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_loss.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_optimizer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree

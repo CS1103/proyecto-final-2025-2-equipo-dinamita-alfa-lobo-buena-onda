@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/cardenas/Desktop/proyecto3/pong_ai/src/utec/apps/SequencePredictor.cpp" "CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o" "gcc" "CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o.d"
+  "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp" "CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o" "gcc" "CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

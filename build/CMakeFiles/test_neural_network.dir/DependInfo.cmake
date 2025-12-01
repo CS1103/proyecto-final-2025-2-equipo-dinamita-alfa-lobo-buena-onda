@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_neural_network.cpp" "CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o" "gcc" "CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o.d"
+  "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_neural_network.cpp" "CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o" "gcc" "CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

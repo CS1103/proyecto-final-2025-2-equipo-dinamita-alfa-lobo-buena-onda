@@ -1,5 +1,5 @@
 CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o: \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_neural_network.cpp \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_neural_network.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config_site \
@@ -981,7 +981,7 @@ CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/algebra/Tensor.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/algebra/Tensor.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/numeric \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/accumulate.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/adjacent_difference.h \
@@ -1000,11 +1000,11 @@ CMakeFiles/test_neural_network.dir/tests/project/test_neural_network.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/execution \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_execution_policy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_interfaces.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_dense.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_activation.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_loss.h \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/nn_optimizer.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_interfaces.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_dense.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_activation.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_loss.h \
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/nn_optimizer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
-  /Users/cardenas/Desktop/proyecto3/pong_ai/include/utec/nn/neural_network.h
+  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/nn/neural_network.h

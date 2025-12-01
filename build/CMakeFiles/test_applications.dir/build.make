@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/cardenas/Desktop/proyecto3/pong_ai
+CMAKE_SOURCE_DIR = /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/cardenas/Desktop/proyecto3/pong_ai/build
+CMAKE_BINARY_DIR = /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test_applications.dir/depend.make
@@ -73,18 +73,18 @@ CMakeFiles/test_applications.dir/codegen:
 .PHONY : CMakeFiles/test_applications.dir/codegen
 
 CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: CMakeFiles/test_applications.dir/flags.make
-CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp
+CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_applications.cpp
 CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o: CMakeFiles/test_applications.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o -MF CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o.d -o CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o -c /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o -MF CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o.d -o CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o -c /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_applications.cpp
 
 CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp > CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_applications.cpp > CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.i
 
 CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto3/pong_ai/tests/project/test_applications.cpp -o CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_applications.cpp -o CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.s
 
 # Object files for target test_applications
 test_applications_OBJECTS = \
@@ -96,7 +96,7 @@ test_applications_EXTERNAL_OBJECTS =
 test_applications: CMakeFiles/test_applications.dir/tests/project/test_applications.cpp.o
 test_applications: CMakeFiles/test_applications.dir/build.make
 test_applications: CMakeFiles/test_applications.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_applications"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_applications"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_applications.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/test_applications.dir/clean:
 .PHONY : CMakeFiles/test_applications.dir/clean
 
 CMakeFiles/test_applications.dir/depend:
-	cd /Users/cardenas/Desktop/proyecto3/pong_ai/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/cardenas/Desktop/proyecto3/pong_ai /Users/cardenas/Desktop/proyecto3/pong_ai /Users/cardenas/Desktop/proyecto3/pong_ai/build /Users/cardenas/Desktop/proyecto3/pong_ai/build /Users/cardenas/Desktop/proyecto3/pong_ai/build/CMakeFiles/test_applications.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles/test_applications.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/test_applications.dir/depend
 
