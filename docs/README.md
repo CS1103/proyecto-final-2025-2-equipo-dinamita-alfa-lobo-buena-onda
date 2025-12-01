@@ -687,7 +687,7 @@ Visualización del Problema XOR:
 
 La siguiente figura muestra la distribución de los datos del problema XOR en un plano 2D, donde los puntos de la Clase 0 (0,0 y 1,1) y Clase 1 (0,1 y 1,0) no pueden ser separados por una sola línea recta, lo que valida la arquitectura de capas densas y activaciones no lineales implementadas.
 
-![Visualización del Problema XOR (Separación No Lineal)](img/grafico_1.jpg)
+![Visualización del Problema XOR (Separación No Lineal)](../img/grafico_1.jpg)
 
 El archivo `PATTERN_CLASSIFIER.H` define la clase `PatternClassifier<T>`, la cual implementa la solución al problema de clasificación **XOR** (Exclusivo o) utilizando una **Red Neuronal Multicapa (MLP)**. Este es un problema clásico no lineal que demuestra la capacidad de las redes neuronales profundas para aprender separaciones complejas.
 
