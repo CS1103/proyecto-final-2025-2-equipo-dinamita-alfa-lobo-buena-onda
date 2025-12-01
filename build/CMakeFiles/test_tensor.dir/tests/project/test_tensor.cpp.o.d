@@ -1,5 +1,5 @@
 CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o: \
-  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_tensor.cpp \
+  /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/tests/project/test_tensor.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config_site \
@@ -978,5 +978,5 @@ CMakeFiles/test_tensor.dir/tests/project/test_tensor.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/saturation_arithmetic.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/execution \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_execution_policy.h \
-  /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/algebra/Tensor.h \
+  /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include/utec/algebra/Tensor.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream

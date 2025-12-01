@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/PatternClassifier.cpp" "CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o" "gcc" "CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o.d"
+  "/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/PatternClassifier.cpp" "CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o" "gcc" "CMakeFiles/pattern_classifier_app.dir/src/utec/apps/PatternClassifier.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

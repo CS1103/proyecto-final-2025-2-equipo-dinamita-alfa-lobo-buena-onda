@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/CMakeLists.txt"
+  "/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/CMakeLists.txt"
   "CMakeFiles/4.0.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.0.3/CMakeSystem.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCXXCompiler.cmake.in"

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include
+CXX_INCLUDES = -I/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/include
 
 CXX_FLAGSarm64 = -std=gnu++20 -arch arm64
 

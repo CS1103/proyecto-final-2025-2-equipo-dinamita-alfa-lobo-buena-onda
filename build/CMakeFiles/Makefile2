@@ -54,10 +54,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda
+CMAKE_SOURCE_DIR = /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
+CMAKE_BINARY_DIR = /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -100,14 +100,14 @@ clean: CMakeFiles/test_applications.dir/clean
 CMakeFiles/pattern_classifier_app.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_classifier_app.dir/build.make CMakeFiles/pattern_classifier_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_classifier_app.dir/build.make CMakeFiles/pattern_classifier_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=3,4 "Built target pattern_classifier_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=3,4 "Built target pattern_classifier_app"
 .PHONY : CMakeFiles/pattern_classifier_app.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pattern_classifier_app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pattern_classifier_app.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
 .PHONY : CMakeFiles/pattern_classifier_app.dir/rule
 
 # Convenience name for target.
@@ -117,7 +117,7 @@ pattern_classifier_app: CMakeFiles/pattern_classifier_app.dir/rule
 # codegen rule for target.
 CMakeFiles/pattern_classifier_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_classifier_app.dir/build.make CMakeFiles/pattern_classifier_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=3,4 "Finished codegen for target pattern_classifier_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=3,4 "Finished codegen for target pattern_classifier_app"
 .PHONY : CMakeFiles/pattern_classifier_app.dir/codegen
 
 # clean rule for target.
@@ -132,14 +132,14 @@ CMakeFiles/pattern_classifier_app.dir/clean:
 CMakeFiles/sequence_predictor_app.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequence_predictor_app.dir/build.make CMakeFiles/sequence_predictor_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequence_predictor_app.dir/build.make CMakeFiles/sequence_predictor_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=5,6 "Built target sequence_predictor_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=5,6 "Built target sequence_predictor_app"
 .PHONY : CMakeFiles/sequence_predictor_app.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sequence_predictor_app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sequence_predictor_app.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
 .PHONY : CMakeFiles/sequence_predictor_app.dir/rule
 
 # Convenience name for target.
@@ -149,7 +149,7 @@ sequence_predictor_app: CMakeFiles/sequence_predictor_app.dir/rule
 # codegen rule for target.
 CMakeFiles/sequence_predictor_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequence_predictor_app.dir/build.make CMakeFiles/sequence_predictor_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=5,6 "Finished codegen for target sequence_predictor_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=5,6 "Finished codegen for target sequence_predictor_app"
 .PHONY : CMakeFiles/sequence_predictor_app.dir/codegen
 
 # clean rule for target.
@@ -164,14 +164,14 @@ CMakeFiles/sequence_predictor_app.dir/clean:
 CMakeFiles/controller_demo_app.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/controller_demo_app.dir/build.make CMakeFiles/controller_demo_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/controller_demo_app.dir/build.make CMakeFiles/controller_demo_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=1,2 "Built target controller_demo_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=1,2 "Built target controller_demo_app"
 .PHONY : CMakeFiles/controller_demo_app.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/controller_demo_app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/controller_demo_app.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
 .PHONY : CMakeFiles/controller_demo_app.dir/rule
 
 # Convenience name for target.
@@ -181,7 +181,7 @@ controller_demo_app: CMakeFiles/controller_demo_app.dir/rule
 # codegen rule for target.
 CMakeFiles/controller_demo_app.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/controller_demo_app.dir/build.make CMakeFiles/controller_demo_app.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=1,2 "Finished codegen for target controller_demo_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=1,2 "Finished codegen for target controller_demo_app"
 .PHONY : CMakeFiles/controller_demo_app.dir/codegen
 
 # clean rule for target.
@@ -196,14 +196,14 @@ CMakeFiles/controller_demo_app.dir/clean:
 CMakeFiles/test_tensor.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=11,12 "Built target test_tensor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=11,12 "Built target test_tensor"
 .PHONY : CMakeFiles/test_tensor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_tensor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_tensor.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_tensor.dir/rule
 
 # Convenience name for target.
@@ -213,7 +213,7 @@ test_tensor: CMakeFiles/test_tensor.dir/rule
 # codegen rule for target.
 CMakeFiles/test_tensor.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tensor.dir/build.make CMakeFiles/test_tensor.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=11,12 "Finished codegen for target test_tensor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=11,12 "Finished codegen for target test_tensor"
 .PHONY : CMakeFiles/test_tensor.dir/codegen
 
 # clean rule for target.
@@ -228,14 +228,14 @@ CMakeFiles/test_tensor.dir/clean:
 CMakeFiles/test_neural_network.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=9,10 "Built target test_neural_network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=9,10 "Built target test_neural_network"
 .PHONY : CMakeFiles/test_neural_network.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_neural_network.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_neural_network.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_neural_network.dir/rule
 
 # Convenience name for target.
@@ -245,7 +245,7 @@ test_neural_network: CMakeFiles/test_neural_network.dir/rule
 # codegen rule for target.
 CMakeFiles/test_neural_network.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_neural_network.dir/build.make CMakeFiles/test_neural_network.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=9,10 "Finished codegen for target test_neural_network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=9,10 "Finished codegen for target test_neural_network"
 .PHONY : CMakeFiles/test_neural_network.dir/codegen
 
 # clean rule for target.
@@ -260,14 +260,14 @@ CMakeFiles/test_neural_network.dir/clean:
 CMakeFiles/test_applications.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=7,8 "Built target test_applications"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=7,8 "Built target test_applications"
 .PHONY : CMakeFiles/test_applications.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_applications.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_applications.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_applications.dir/rule
 
 # Convenience name for target.
@@ -277,7 +277,7 @@ test_applications: CMakeFiles/test_applications.dir/rule
 # codegen rule for target.
 CMakeFiles/test_applications.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_applications.dir/build.make CMakeFiles/test_applications.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=7,8 "Finished codegen for target test_applications"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=7,8 "Finished codegen for target test_applications"
 .PHONY : CMakeFiles/test_applications.dir/codegen
 
 # clean rule for target.

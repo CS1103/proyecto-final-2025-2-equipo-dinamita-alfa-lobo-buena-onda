@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda
+CMAKE_SOURCE_DIR = /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
+CMAKE_BINARY_DIR = /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sequence_predictor_app.dir/depend.make
@@ -73,18 +73,18 @@ CMakeFiles/sequence_predictor_app.dir/codegen:
 .PHONY : CMakeFiles/sequence_predictor_app.dir/codegen
 
 CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o: CMakeFiles/sequence_predictor_app.dir/flags.make
-CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o: /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp
+CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o: /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp
 CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o: CMakeFiles/sequence_predictor_app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o -MF CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o.d -o CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o -c /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o -MF CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o.d -o CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o -c /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp
 
 CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp > CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp > CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.i
 
 CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp -o CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/src/utec/apps/SequencePredictor.cpp -o CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.s
 
 # Object files for target sequence_predictor_app
 sequence_predictor_app_OBJECTS = \
@@ -96,7 +96,7 @@ sequence_predictor_app_EXTERNAL_OBJECTS =
 sequence_predictor_app: CMakeFiles/sequence_predictor_app.dir/src/utec/apps/SequencePredictor.cpp.o
 sequence_predictor_app: CMakeFiles/sequence_predictor_app.dir/build.make
 sequence_predictor_app: CMakeFiles/sequence_predictor_app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sequence_predictor_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sequence_predictor_app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sequence_predictor_app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/sequence_predictor_app.dir/clean:
 .PHONY : CMakeFiles/sequence_predictor_app.dir/clean
 
 CMakeFiles/sequence_predictor_app.dir/depend:
-	cd /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build /Users/cardenas/Desktop/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles/sequence_predictor_app.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build /Users/cardenas/Desktop/prueba/proyecto-final-2025-2-equipo-dinamita-alfa-lobo-buena-onda/build/CMakeFiles/sequence_predictor_app.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/sequence_predictor_app.dir/depend
 
